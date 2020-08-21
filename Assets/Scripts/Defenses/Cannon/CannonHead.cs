@@ -5,16 +5,18 @@ using UnityEngine;
 public class CannonHead : MonoBehaviour
 {
     public GameObject BulletPrefab;
+    Transform bulletHolder;
 
-    private void Start()
+    public void SetBulletHolder(Transform bulletHolder) 
     {
-        Fire();
+        this.bulletHolder = bulletHolder;
     }
 
     public void Fire()
     {
-        var bullet = Instantiate(BulletPrefab,transform);
-        bullet.transform.position = Vector3.zero;
-        bullet.GetComponent<Bullet>().Direction = this.transform.forward;
+        var bullet = Instantiate(BulletPrefab,bulletHolder);
+        bullet.transform.position = transform.position;
+        bullet.transform.localScale = Vector3.one;
+        bullet.GetComponent<Bullet>().Direction = this.transform.right;
     }
 }
