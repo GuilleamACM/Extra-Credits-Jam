@@ -13,6 +13,8 @@ namespace TinyGecko.Pathfinding2D
         public int hCost;
         public int fCost { get => gCost + hCost; }
         public int HeapIndex { get; set; }
+
+        public GridNode parent;
         #endregion Fields
 
 
