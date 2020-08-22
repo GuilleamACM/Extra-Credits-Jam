@@ -10,22 +10,22 @@ PrefabInstance:
     - target: {fileID: 3735270157520374889, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: m_Name
-      value: OctaCannon
+      value: OctaCannon Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3735270157520374892, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.06768412
+      value: -0.0145
       objectReference: {fileID: 0}
     - target: {fileID: 3735270157520374892, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.13001984
+      value: 0.0403
       objectReference: {fileID: 0}
     - target: {fileID: 3735270157520374892, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.11264489
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3735270157520374892, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
@@ -67,6 +67,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3735270157520374892, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9448
+      objectReference: {fileID: 0}
+    - target: {fileID: 3735270157520374892, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.98
+      objectReference: {fileID: 0}
     - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: Cannons.Array.size
@@ -97,7 +107,22 @@ PrefabInstance:
       propertyPath: BulletHolder
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: TimeBetweenShots
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3735270157520374895, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ea1f21261a9256c4e94cf1983537a446,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 7450629660574675607, guid: 605e9408ddb31d843b72bb8d42681e76, type: 3}
+    - {fileID: 7450629660215826644, guid: 605e9408ddb31d843b72bb8d42681e76, type: 3}
+    - {fileID: 7450629659764577948, guid: 605e9408ddb31d843b72bb8d42681e76, type: 3}
+    - {fileID: 7450629658927308362, guid: 605e9408ddb31d843b72bb8d42681e76, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 605e9408ddb31d843b72bb8d42681e76, type: 3}
 --- !u!4 &2916956550963430042 stripped
 Transform:
@@ -172,7 +197,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonHead (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
 --- !u!114 &8991631126822870973 stripped
 MonoBehaviour:
@@ -253,7 +279,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonHead (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
 --- !u!114 &8991631127622790600 stripped
 MonoBehaviour:
@@ -334,7 +361,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonHead (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
 --- !u!114 &8991631126724904238 stripped
 MonoBehaviour:
@@ -415,7 +447,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonHead (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
 --- !u!114 &8991631126275095421 stripped
 MonoBehaviour:

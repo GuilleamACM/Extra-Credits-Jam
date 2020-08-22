@@ -60,7 +60,7 @@ public class AimCannon : MonoBehaviour
         Vector3 targetDir = target.position - transform.position;
         Quaternion LookRotation = Quaternion.LookRotation(targetDir);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, LookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        Debug.Log(rotation.z);
+        //Debug.Log(rotation.z);
         transform.rotation = Quaternion.Euler(0f,0f,rotation.z);
         if (targetDir.x < 0f)
         {
