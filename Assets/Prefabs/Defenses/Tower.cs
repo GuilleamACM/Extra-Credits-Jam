@@ -29,7 +29,7 @@ public abstract class Tower : MonoBehaviour
         this.stalled = false;
     }
 
-    protected bool Fire() 
+    protected virtual bool Fire() 
     {
         if(!stalled)
             FireAllCannons();
