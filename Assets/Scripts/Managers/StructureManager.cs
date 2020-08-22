@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEditor.ShaderGraph.Internal;
 
 namespace TinyGecko.Pathfinding2D
 {
@@ -145,7 +144,7 @@ namespace TinyGecko.Pathfinding2D
         /// on the grid
         /// </summary>
         /// <returns>True if the structure was placed, false otherwise</returns>
-        public bool PlaceCurrentStructure()
+        public bool PlaceCurrentStructure(PlayerStatus status)
         {
             if (!StructureToPlace)
                 return false;
@@ -154,6 +153,7 @@ namespace TinyGecko.Pathfinding2D
             if (!canPlace.Item1)
                 return false;
 
+            status.UsedMemory += StructureToPlace.memoryCost;
             PlaceStructure(StructureToPlace, canPlace.Item2);
             return true;
         }
@@ -171,7 +171,7 @@ namespace TinyGecko.Pathfinding2D
         /// </summary>
         /// <param name="structure">The structure to be removed</param>
         /// <returns>True if structure was removed. False otherwise</returns>
-        public bool RemoveStructure(Structure structure)
+        public bool RemoveStructure(Structure structure, PlayerStatus status)
         {
             if (_placedStructures.Contains(structure))
             {
@@ -179,6 +179,7 @@ namespace TinyGecko.Pathfinding2D
                     cel.celState = GridCelState.Free;
                 
                 Destroy(structure.gameObject);
+                status.UsedMemory -= structure.memoryCost;
                 return _placedStructures.Remove(structure);
             }
 

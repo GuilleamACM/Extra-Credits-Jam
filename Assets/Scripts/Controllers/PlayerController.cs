@@ -1,16 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TinyGecko.Pathfinding2D;
+﻿using TinyGecko.Pathfinding2D;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerStatus))]
 public class PlayerController : MonoBehaviour
 {
     #region Fields
     private Structure _structureAtMouse;
+    private PlayerStatus _playerStatus;
     #endregion Fields
 
     #region MonoBehaviour Methods
-    // Update is called once per frame
+    private void Awake()
+    {
+        _playerStatus = GetComponent<PlayerStatus>();    
+
+        Debug.Log($"Player Status");
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -37,14 +43,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            bool result = StructureManager.Instance.PlaceCurrentStructure();
+            StructureManager.Instance.PlaceCurrentStructure(_playerStatus);
+
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             if (StructureManager.Instance.StructureToPlace == null)
             {
                 if (_structureAtMouse)
-                    StructureManager.Instance.RemoveStructure(_structureAtMouse);
+                    StructureManager.Instance.RemoveStructure(_structureAtMouse, _playerStatus);
             }
             else
                 StructureManager.Instance.CancelPlacement();
