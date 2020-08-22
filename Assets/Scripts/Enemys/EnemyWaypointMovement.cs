@@ -29,6 +29,7 @@ public class EnemyWaypointMovement : MonoBehaviour
     {
         if(currentWaypointIndex >= Waypoints.waypoints.Length - 1)
         {
+            ReachObjective();
             return;
         }
 

@@ -29,6 +29,18 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void Heal(float amount)
+    {
+        if(health + amount > maxHealth)
+        {
+            health = maxHealth;
+        }
+        else
+        {
+            health += amount;
+        }
+    }
+
     public void Slow(float percentage)
     {
         MovementSpeed = defaultMovementSpeed * (1f - percentage);
