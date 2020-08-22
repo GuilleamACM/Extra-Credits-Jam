@@ -9,6 +9,13 @@ public class Bullet : MonoBehaviour
     public int Damage = 10;
     public float LifeTime = 10f;
     float currentLifeTime = 0f;
+    public BulletType type;
+
+    public enum BulletType 
+    {
+        Normal,
+        Pierce
+    }
 
     public static string EnemyTag = "Enemy";
 
@@ -47,7 +54,8 @@ public class Bullet : MonoBehaviour
         if (collision.CompareTag(EnemyTag))
         {
             collision.GetComponent<Enemy>().TakeDamage(this.Damage);
-            Destroy(this.gameObject);
+            if(this.type == BulletType.Normal)
+                Destroy(this.gameObject);
         }
     }
 }
