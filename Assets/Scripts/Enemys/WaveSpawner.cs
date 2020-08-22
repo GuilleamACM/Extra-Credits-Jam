@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
+    public static WaveSpawner Instance;
+
     public static int EnemiesAlive = 0;
 
     public Wave[] waves;
+    List<Transform> enemys;
 
     public Transform spawnPoint;
 
@@ -14,6 +17,23 @@ public class WaveSpawner : MonoBehaviour
     private float countdown = 2f;
 
     private int waveIndex;
+
+    public List<Transform> GetEnemys() => enemys;
+
+    private void Awake()
+    {
+        if (Instance) 
+        {
+            Destroy(Instance.gameObject);
+        }
+        Instance = this;
+        this.enemys = new List<Transform>();
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
 
     private void Update()
     {
@@ -57,6 +77,6 @@ public class WaveSpawner : MonoBehaviour
 
     private void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        enemys.Add(Instantiate(enemy, spawnPoint.position, spawnPoint.rotation).transform);
     }
 }
