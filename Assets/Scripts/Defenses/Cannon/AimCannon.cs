@@ -12,11 +12,11 @@ public class AimCannon : MonoBehaviour
     [SerializeField]
     Transform target;
     float distance;
-    private List<Transform> enemys;
+    private List<Transform> enemies;
 
     private void Start()
     {
-        this.enemys = WaveSpawner.Instance.GetEnemys();
+        this.enemies = WaveSpawner.Instance.GetEnemiesTransform();
     }
 
     private void Update()
@@ -87,14 +87,17 @@ public class AimCannon : MonoBehaviour
     void TryLockTarget() 
     {
         target = null;
-        foreach (Transform enemy in enemys) 
+        if(enemies.Count > 0)
         {
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
-            if (!target || distance < this.distance) 
+            foreach (Transform enemy in enemies)
             {
-                this.target = enemy.transform;
-                this.distance = distance;
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
+                if (!target || distance < this.distance)
+                {
+                    this.target = enemy.transform;
+                    this.distance = distance;
+                }
             }
-        }
+        } 
     }
 }

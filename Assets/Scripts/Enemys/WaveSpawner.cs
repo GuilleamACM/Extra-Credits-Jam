@@ -6,10 +6,11 @@ public class WaveSpawner : MonoBehaviour
 {
     public static WaveSpawner Instance;
 
-    public static int EnemiesAlive = 0;
+    public static int enemiesAlive = 0;
 
     public Wave[] waves;
-    List<Transform> enemys;
+    private List<Enemy> enemies;
+    private List<Transform> enemiesTransform;
 
     public Transform spawnPoint;
 
@@ -17,8 +18,7 @@ public class WaveSpawner : MonoBehaviour
     private float countdown = 2f;
 
     private int waveIndex;
-
-    public List<Transform> GetEnemys() => enemys;
+    public List<Transform> GetEnemiesTransform() => enemiesTransform;
 
     private void Awake()
     {
@@ -27,7 +27,8 @@ public class WaveSpawner : MonoBehaviour
             Destroy(Instance.gameObject);
         }
         Instance = this;
-        this.enemys = new List<Transform>();
+        this.enemies = new List<Enemy>();
+        this.enemiesTransform = new List<Transform>();
     }
 
     private void OnDestroy()
@@ -37,7 +38,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (EnemiesAlive > 0)
+        if (enemiesAlive > 0)
         {
             return;
         }
@@ -64,8 +65,6 @@ public class WaveSpawner : MonoBehaviour
     {
         Wave wave = waves[waveIndex];
 
-        EnemiesAlive = wave.enemies.Length;
-
         for (int i = 0; i < wave.enemies.Length; i++)
         {
             SpawnEnemy(wave.enemies[i]);
@@ -75,8 +74,18 @@ public class WaveSpawner : MonoBehaviour
         waveIndex++;
     }
 
-    private void SpawnEnemy(GameObject enemy)
+    private void SpawnEnemy(Enemy enemy)
     {
-        enemys.Add(Instantiate(enemy, spawnPoint.position, spawnPoint.rotation).transform);
+        GameObject spawnedEnemy = Instantiate(enemy.gameObject, spawnPoint.position, spawnPoint.rotation);
+        enemies.Add(spawnedEnemy.GetComponent<Enemy>());
+        enemiesTransform.Add(spawnedEnemy.transform);
+        enemiesAlive = enemies.Count;
+    }
+
+    public void RemoveEnemy(Enemy enemy)
+    {
+        enemiesTransform.Remove(enemy.transform);
+        enemies.Remove(enemy);
+        enemiesAlive = enemies.Count;
     }
 }

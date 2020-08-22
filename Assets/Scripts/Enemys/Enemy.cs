@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -61,7 +62,7 @@ public class Enemy : MonoBehaviour
         isDead = true;
         //Particle Effects
         //DestroyParticles
-        WaveSpawner.EnemiesAlive--;
+        WaveSpawner.Instance.RemoveEnemy(this);
         Destroy(gameObject);
     }
 }
