@@ -16,7 +16,7 @@ namespace TinyGecko.Pathfinding2D
         [SerializeField] float _celSize = 1;
         [SerializeField] Vector2Int _gridSize = new Vector2Int(128, 128);
 
-        private GridNode[,] _grid;
+        private GridCel[,] _grid;
         private Pathfinder _pathfinder;
         #endregion Fields
 
@@ -61,14 +61,14 @@ namespace TinyGecko.Pathfinding2D
 
         private void OnValidate()
         {
-            _grid = new GridNode[_gridSize.x, _gridSize.y];
+            _grid = new GridCel[_gridSize.x, _gridSize.y];
 
             for (int y = 0; y < _gridSize.y; y++)
             {
                 for (int x = 0; x < _gridSize.x; x++)
                 {
-                    Vector3 nodePos = GridOrigin + ToCenterOffset + new Vector3(_celSize * x, -_celSize * y);
-                    _grid[x, y] = new GridNode(VerifyPosition(nodePos), nodePos, x, y);
+                    Vector3 celPos = GridOrigin + ToCenterOffset + new Vector3(_celSize * x, -_celSize * y);
+                    _grid[x, y] = new GridCel(VerifyPosition(celPos), celPos, x, y);
                 }
             }
         }
@@ -79,21 +79,35 @@ namespace TinyGecko.Pathfinding2D
             Gizmos.DrawWireCube(transform.position, new Vector3(_gridSize.x * _celSize, _gridSize.y * _celSize, 0));
             if (_grid != null)
             {
-                foreach (GridNode n in _grid)
+                foreach (GridCel n in _grid)
                 {
-                    Gizmos.color = n.occupied ? new Color(0.7f, 0f, 0f, 0.2f) : new Color(1.0f, 1.0f, 1.0f, 0.4f);
+                    Gizmos.color = ColorFromGridState(n);
                     Gizmos.DrawCube(n.worldPos, new Vector3(_celSize - 0.05f, _celSize - 0.05f, 0f));
                 }
             }
-
-            GridNode g = LocalPosToGrid(MouseToLocal());
-            if (g != null)
-            {
-                Gizmos.color = Color.cyan;
-                Gizmos.DrawCube(g.worldPos, new Vector3(_celSize - 0.05f, _celSize - 0.05f, 0f));
-            }
         }
         #endregion MonoBehaviour Methods
+
+
+        #region MonoBehaviour Utility Methods
+        private Color ColorFromGridState(GridCel cel)
+        {
+            switch (cel.celState)
+            {
+                case GridCelState.Free:
+                    return new Color(1.0f, 1.0f, 1.0f, 0.4f);
+                case GridCelState.Occupied:
+                    return new Color(1.0f, 0.1f, 0.1f, 0.4f);
+                case GridCelState.Walkable:
+                    return new Color(0.8f, 0.8f, 0.1f, 0.4f);
+                case GridCelState.WalkablePlaced:
+                    return new Color(0.4f, 0.4f, 0.05f, 0.4f);
+
+                default:
+                    return new Color(1.0f, 1.0f, 1.0f, 0.4f);
+            }
+        }
+        #endregion MonoBehaviour Utility Methods
 
 
         #region Methods
@@ -102,19 +116,19 @@ namespace TinyGecko.Pathfinding2D
         /// Function to verify if a grid position is valid(nothing is occupying it)
         /// durin grid construction
         /// </summary>
-        /// <param name="nodePos">The grid node position</param>
-        /// <returns>True if there's no collider at this position. False otherwise</returns>
-        private bool VerifyPosition(Vector3 nodePos)
+        /// <param name="celPos">The grid cel position</param>
+        /// <returns>The corresponding cel state based on world setup</returns>
+        private GridCelState VerifyPosition(Vector3 celPos)
         {
-            return false;
+            return GridCelState.Free;
         }
 
         /// <summary>
-        /// Function to convert a local grid position to a grid node
+        /// Function to convert a local grid position to a grid cel
         /// </summary>
         /// <param name="localPos">Local position coordinates</param>
         /// <returns>The corresponding grid or null if it wasn't a valid position</returns>
-        public GridNode LocalPosToGrid(Vector3 localPos)
+        public GridCel LocalPosToGrid(Vector3 localPos)
         {
             if (localPos.x > 0 && localPos.y > 0 && localPos.x <= GridBounds.x && localPos.y <= GridBounds.y)
             {
@@ -128,11 +142,11 @@ namespace TinyGecko.Pathfinding2D
         }
 
         /// <summary>
-        /// Function to convert a world position to a grid node
+        /// Function to convert a world position to a grid cel
         /// </summary>
         /// <param name="pos">The world position</param>
         /// <returns>The corresponding grid or null if it wasn't a valid position</returns>
-        public GridNode WorldPosToGrid(Vector3 pos)
+        public GridCel WorldPosToGrid(Vector3 pos)
         {
             return LocalPosToGrid(WorldToLocal(pos));
         }
@@ -160,24 +174,23 @@ namespace TinyGecko.Pathfinding2D
 
 
         /// <summary>
-        /// Function to get all the the neighbour Nodes of a GridNode
+        /// Function to get all the the neighbour Cels of a GridCel
         /// </summary>
-        /// <param name="node">GridNode which neighbours must be found</param>
-        /// <returns>List with all the GridNodes around the input Node</returns>
-        public List<GridNode> GetNeighbours(GridNode node)
+        /// <param name="cel">GridCel which neighbours must be found</param>
+        /// <returns>List with all the GridCels around the input Cel</returns>
+        public List<GridCel> GetNeighbours(GridCel cel)
         {
-            List<GridNode> neighbours = new List<GridNode>();
+            List<GridCel> neighbours = new List<GridCel>();
 
             for (int x = -1; x <= 1; x++)
             {
                 for (int y = -1; y <= 1; y++)
                 {
-                    //if (x == 0 && y == 0)
                     if (x == 0 && y == 0 || x == 1 && y == 1 || x == -1 && y == 1 || x == 1 && y == -1 || x == -1 && y == -1)
                         continue;
 
-                    int checkX = node.gridX + x;
-                    int checkY = node.gridY + y;
+                    int checkX = cel.gridX + x;
+                    int checkY = cel.gridY + y;
 
                     if (checkX >= 0 && checkX < _gridSize.x && checkY >= 0 && checkY < _gridSize.y)
                         neighbours.Add(_grid[checkX, checkY]);

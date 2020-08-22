@@ -23,42 +23,48 @@ namespace TinyGecko.Pathfinding2D
         #endregion Constructor
 
         #region Methods
-        public Queue<GridNode> FindPath(Vector3 startPos, Vector3 targetPos)
+        /// <summary>
+        /// Function to find a path between two positions
+        /// </summary>
+        /// <param name="startPos">starting position</param>
+        /// <param name="targetPos">target position</param>
+        /// <returns>Queue containing the nodes an entity shall traverse</returns>
+        public Queue<GridCel> FindPath(Vector3 startPos, Vector3 targetPos)
         {
-            GridNode startNode = _grid.WorldPosToGrid(startPos);
-            GridNode targetNode = _grid.WorldPosToGrid(targetPos);
+            GridCel startCel = _grid.WorldPosToGrid(startPos);
+            GridCel targetCel = _grid.WorldPosToGrid(targetPos);
 
-            if (targetNode == null || startNode == null)
+            if (targetCel == null || startCel == null)
             {
                 return null;
             }
 
-            Heap<GridNode> openSet = new Heap<GridNode>(_grid.CelCount);
-            HashSet<GridNode> closedSet = new HashSet<GridNode>();
-            openSet.Add(startNode);
+            Heap<GridCel> openSet = new Heap<GridCel>(_grid.CelCount);
+            HashSet<GridCel> closedSet = new HashSet<GridCel>();
+            openSet.Add(startCel);
 
             while (openSet.Count > 0)
             {
-                GridNode currentNode = openSet.RemoveFirst();
-                closedSet.Add(currentNode);
+                GridCel currentCel = openSet.RemoveFirst();
+                closedSet.Add(currentCel);
 
-                if (currentNode == targetNode)
+                if (currentCel == targetCel)
                 {
-                    var path = RetracePath(startNode, targetNode);
+                    var path = RetracePath(startCel, targetCel);
                     return path;
                 }
 
-                foreach (GridNode neighbour in _grid.GetNeighbours(currentNode))
+                foreach (GridCel neighbour in _grid.GetNeighbours(currentCel))
                 {
-                    if (neighbour.occupied || closedSet.Contains(neighbour))
+                    if (neighbour.celState == GridCelState.Occupied || closedSet.Contains(neighbour))
                         continue;
 
-                    int newCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+                    int newCostToNeighbour = currentCel.gCost + GetDistance(currentCel, neighbour);
                     if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                     {
                         neighbour.gCost = newCostToNeighbour;
-                        neighbour.hCost = GetDistance(neighbour, targetNode);
-                        neighbour.parent = currentNode;
+                        neighbour.hCost = GetDistance(neighbour, targetCel);
+                        neighbour.parent = currentCel;
 
                         if (!openSet.Contains(neighbour))
                             openSet.Add(neighbour);
@@ -71,32 +77,44 @@ namespace TinyGecko.Pathfinding2D
             return null;
         }
 
-        public Queue<GridNode> RetracePath(GridNode startNode, GridNode endNode)
+        /// <summary>
+        /// Function to find a path between a starting position and a grid entity
+        /// </summary>
+        /// <param name="startPos">starting position</param>
+        /// <param name="entity">target entity</param>
+        /// <returns>Queue containing the nodes an entity shall traverse</returns>
+        public Queue<GridCel> FindPath(Vector3 startPos, IGridEntity entity)
         {
-            List<GridNode> path = new List<GridNode>();
-            GridNode currentNode = endNode;
-            while (currentNode != startNode)
+            float halfSizeX = entity.EntitySize.x * _grid.CelSize / 2.0f + 0.5f; // +0.5f offset is to guarantee it'll end outside the entity
+            float halfSizeY = entity.EntitySize.y * _grid.CelSize / 2.0f + 0.5f; // +0.5f offset is to guarantee it'll end outside the entity
+
+            float posX = Mathf.Clamp(startPos.x, entity.WorldPos.x - halfSizeX, entity.WorldPos.x + halfSizeX);
+            float posY = Mathf.Clamp(startPos.y, entity.WorldPos.y - halfSizeY, entity.WorldPos.y + halfSizeY);
+
+            Vector3 targetPos = new Vector3(posX, posY, 0);
+            return FindPath(startPos, targetPos);
+        }
+
+        public Queue<GridCel> RetracePath(GridCel startCel, GridCel endCel)
+        {
+            List<GridCel> path = new List<GridCel>();
+            GridCel currentCel = endCel;
+            while (currentCel != startCel)
             {
-                path.Add(currentNode);
-                currentNode = currentNode.parent;
+                path.Add(currentCel);
+                currentCel = currentCel.parent;
             }
 
             path.Reverse();
-            Queue<GridNode> pathQueue = new Queue<GridNode>(path);
+            Queue<GridCel> pathQueue = new Queue<GridCel>(path);
             return pathQueue;
         }
 
-        int GetDistance(GridNode nodeA, GridNode nodeB)
+        int GetDistance(GridCel celA, GridCel celB)
         {
-            int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
-            int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
-
-            return (dstX + dstY) * 3;
-            ////return Mathf.Sqrt(dstX * dstX + dstY * dstY);
-
-            //if (dstX > dstY)
-            //    return 14 * dstY + 10 * (dstX - dstY);
-            //return 14 * dstX + 10 * (dstY - dstX);
+            int dstX = Mathf.Abs(celA.gridX - celB.gridX);
+            int dstY = Mathf.Abs(celA.gridY - celB.gridY);
+                return dstX + dstY;
         }
         #endregion Methods
     }
