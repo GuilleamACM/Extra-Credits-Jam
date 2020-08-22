@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TinyGecko.Grid2D.Pathfinding
+namespace TinyGecko.Pathfinding2D
 {
 	public class Heap<T> where T : IHeapItem<T>
 	{

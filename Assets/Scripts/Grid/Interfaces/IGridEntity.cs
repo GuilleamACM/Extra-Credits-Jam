@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace TinyGecko.Grid2D
+namespace TinyGecko.Pathfinding2D
 {
     public interface IGridEntity // Entities that can occupy a WorldGrid
     {

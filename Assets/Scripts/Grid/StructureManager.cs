@@ -1,57 +1,68 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using System;
 
-namespace TinyGecko.Grid2D
+namespace TinyGecko.Pathfinding2D
 {
     class StructureManager : MonoBehaviour
     {
         #region Fields
         [SerializeField] private List<GameObject> _structuresPrefabs;
-        [SerializeField] private Structure _dummyStructure; // To test stuff
+        [SerializeField] private Color _validPlace = new Color(1.0f, 1.0f, 1.0f, 0.7f);
+        [SerializeField] private Color _invalidPlace = new Color(0.6f, 0.1f, 0.0f, 0.7f);
+        private List<Structure> _placedStructures;
+        private Structure _structureToPlace;
         #endregion Fields
 
 
         #region Properties
-        public Structure StructureToPlace { get => _dummyStructure; set => _dummyStructure = value; }
+        public Structure StructureToPlace { get => _structureToPlace; set => _structureToPlace = value; }
         #endregion Properties
-        List<GridNode> nodes;
 
 
         #region MonoBehaviour Methods
         private void Update()
         {
-            if(_dummyStructure != null)
+            // Select Structures
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SelectStructure(0);
+            }
+
+            // Place Structures on Mouse Down
+            if(StructureToPlace != null)
             {
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pos = new Vector3(pos.x, pos.y, 0);
-                _dummyStructure.transform.position = pos;
+                StructureToPlace.transform.position = pos;
 
-                bool canPlace = CanPlaceStructure(_dummyStructure);
-                if (canPlace && Input.GetKeyDown(KeyCode.Mouse0))
+                var canPlace = CanPlaceStructure(StructureToPlace);
+                if (canPlace.Item1)
                 {
-                    PlaceStructure(_dummyStructure);
-                    _dummyStructure = null;
+                    StructureToPlace.gameObject.GetComponent<SpriteRenderer>().color = _validPlace;
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                        PlaceStructure(StructureToPlace, canPlace.Item2);
                 }
+                else
+                    StructureToPlace.GetComponent<SpriteRenderer>().color = _invalidPlace;
             }
         }
 
-        private void OnDrawGizmos()
+        private void Awake()
         {
-            if(nodes != null)
-            {
-                Gizmos.color = Color.red;
-                foreach (var node in nodes)
-                {
-                    Gizmos.DrawCube(node.worldPos, new Vector3((float)WorldGrid.Instance.CelSize - 0.05f, (float)WorldGrid.Instance.CelSize - 0.05f, 0f));
-                }
-            }
+            _placedStructures = new List<Structure>();
         }
         #endregion MonoBehaviour Methods
 
 
-        #region Methods
-        public List<GridNode> OverlappingGrids(Structure structure) 
+        #region Structure Placement Methods
+
+        /// <summary>
+        ///  Function to get the grids a structure is overlapping
+        /// </summary>
+        /// <param name="structure">The structure to check the overlaps</param>
+        /// <returns>A list of GridNodes that are being overlapped</returns>
+        private List<GridNode> OverlappingGrids(Structure structure) 
         {
             Vector2Int bounds = structure.EntitySize;
             Vector3 offset = WorldGrid.Instance.ToCenterOffset;
@@ -72,19 +83,32 @@ namespace TinyGecko.Grid2D
             return occupyingNodes;
         }
 
-        public bool CanPlaceStructure(Structure structure)
+        /// <summary>
+        /// Function to check if a given structure can be placed
+        /// </summary>
+        /// <param name="structure">The structure to be checked</param>
+        /// <returns>
+        /// A tuple containing a bool to know if it can be placed an the nodes 
+        /// that the structure is/will occupy
+        /// </returns>
+        public Tuple<bool, List<GridNode>> CanPlaceStructure(Structure structure)
         {
-            nodes = OverlappingGrids(structure);
+            var nodes = OverlappingGrids(structure);
             foreach(var node in nodes)
             {
                 if (node.occupied)
-                    return false;
+                    return Tuple.Create(false, nodes);
             }
 
-            return nodes.Count == structure.EntitySize.x * structure.EntitySize.y;
+            return Tuple.Create(nodes.Count == structure.EntitySize.x * structure.EntitySize.y, nodes);
         }
 
-        public void PlaceStructure(Structure structure)
+        /// <summary>
+        /// Function to place a structure on the grid
+        /// </summary>
+        /// <param name="structure">The structure to be placed</param>
+        /// <param name="nodes">The GridNodes to receive the structure</param>
+        public void PlaceStructure(Structure structure, List<GridNode> nodes)
         {
             Vector3 center = Vector3.zero;
             foreach (var node in nodes)
@@ -94,7 +118,34 @@ namespace TinyGecko.Grid2D
             }
             center /= nodes.Count;
             structure.gameObject.transform.position = center;
+            _placedStructures.Add(structure);
+
+            structure.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            StructureToPlace = null;
         }
-        #endregion Methods
+        #endregion Structure Placement Methods
+
+
+        #region Structure Selection Methods
+
+        /// <summary>
+        /// Function to select a struction from the structure
+        /// prefabs and prepare it to be placed
+        /// </summary>
+        /// <param name="index">index of the structure on the list</param>
+        public void SelectStructure(int index)
+        {
+            if (index < 0 && index >= _structuresPrefabs.Count)
+                return;
+            if (_structuresPrefabs[index] == null)
+                return;
+
+            if (StructureToPlace != null)
+                Destroy(StructureToPlace.gameObject);
+
+            GameObject structure = Instantiate(_structuresPrefabs[index]);
+            StructureToPlace = structure.GetComponent<Structure>();
+        }
+        #endregion Structure Selection Methods
     }
 }

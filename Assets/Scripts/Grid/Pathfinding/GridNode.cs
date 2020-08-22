@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using TinyGecko.Grid2D.Pathfinding;
 
-namespace TinyGecko.Grid2D
+namespace TinyGecko.Pathfinding2D
 {
     public class GridNode : IHeapItem<GridNode>
     { 
