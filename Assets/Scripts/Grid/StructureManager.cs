@@ -1,11 +1,32 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEditor.ShaderGraph.Internal;
 
 namespace TinyGecko.Pathfinding2D
 {
     class StructureManager : MonoBehaviour
     {
+        #region Singleton
+        private static StructureManager _instance;
+
+        private void Awake()
+        {
+            if (!_instance)
+            {
+                Instance = this;
+                _placedStructures = new List<Structure>();
+            }
+            else
+            {
+                Destroy(this);
+                return;
+            }
+
+        }
+        #endregion Singleton
+
+
         #region Fields
         [SerializeField] private List<GameObject> _structuresPrefabs;
         [SerializeField] private Color _validPlace = new Color(1.0f, 1.0f, 1.0f, 0.7f);
@@ -19,6 +40,7 @@ namespace TinyGecko.Pathfinding2D
         #region Properties
         public Structure StructureToPlace { get => _structureToPlace; set => _structureToPlace = value; }
         public List<Structure> PlacedStructures { get => _placedStructures; }
+        public static StructureManager Instance { get => _instance; private set => _instance = value; }
         #endregion Properties
 
 
@@ -40,19 +62,10 @@ namespace TinyGecko.Pathfinding2D
 
                 var canPlace = CanPlaceStructure(StructureToPlace);
                 if (canPlace.Item1)
-                {
                     StructureToPlace.gameObject.GetComponent<SpriteRenderer>().color = _validPlace;
-                    if (Input.GetKeyDown(KeyCode.Mouse0))
-                        PlaceStructure(StructureToPlace, canPlace.Item2);
-                }
                 else
                     StructureToPlace.GetComponent<SpriteRenderer>().color = _invalidPlace;
             }
-        }
-
-        private void Awake()
-        {
-            _placedStructures = new List<Structure>();
         }
         #endregion MonoBehaviour Methods
 
@@ -93,7 +106,7 @@ namespace TinyGecko.Pathfinding2D
         /// A tuple containing a bool to know if it can be placed an the cels 
         /// that the structure is/will occupy
         /// </returns>
-        public Tuple<bool, List<GridCel>> CanPlaceStructure(Structure structure)
+        private Tuple<bool, List<GridCel>> CanPlaceStructure(Structure structure)
         {
             var cels = OverlappingGrids(structure);
             foreach(var cel in cels)
@@ -110,7 +123,7 @@ namespace TinyGecko.Pathfinding2D
         /// </summary>
         /// <param name="structure">The structure to be placed</param>
         /// <param name="cels">The GridCels to receive the structure</param>
-        public void PlaceStructure(Structure structure, List<GridCel> cels)
+        private void PlaceStructure(Structure structure, List<GridCel> cels)
         {
             Vector3 center = Vector3.zero;
             foreach (var cel in cels)
@@ -120,11 +133,56 @@ namespace TinyGecko.Pathfinding2D
             }
             center /= cels.Count;
             structure.gameObject.transform.position = center;
-            structure.occupyingCels = cels;
+            structure.OccupyingCels = cels;
             _placedStructures.Add(structure);
 
             structure.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             StructureToPlace = null;
+        }
+
+        /// <summary>
+        /// Function to try placing the current structure to place 
+        /// on the grid
+        /// </summary>
+        /// <returns>True if the structure was placed, false otherwise</returns>
+        public bool PlaceCurrentStructure()
+        {
+            if (!StructureToPlace)
+                return false;
+
+            var canPlace = CanPlaceStructure(StructureToPlace);
+            if (!canPlace.Item1)
+                return false;
+
+            PlaceStructure(StructureToPlace, canPlace.Item2);
+            return true;
+        }
+
+        public void CancelPlacement()
+        {
+            if (StructureToPlace)
+                Destroy(StructureToPlace.gameObject);
+
+            StructureToPlace = null;
+        }
+
+        /// <summary>
+        /// Function to remove a structure
+        /// </summary>
+        /// <param name="structure">The structure to be removed</param>
+        /// <returns>True if structure was removed. False otherwise</returns>
+        public bool RemoveStructure(Structure structure)
+        {
+            if (_placedStructures.Contains(structure))
+            {
+                foreach(var cel in structure.OccupyingCels)
+                    cel.celState = GridCelState.Free;
+                
+                Destroy(structure.gameObject);
+                return _placedStructures.Remove(structure);
+            }
+
+            return false;
         }
         #endregion Structure Placement Methods
 
@@ -138,7 +196,6 @@ namespace TinyGecko.Pathfinding2D
 
 
         #region Structure Selection Methods
-
         /// <summary>
         /// Function to select a struction from the structure
         /// prefabs and prepare it to be placed
@@ -146,7 +203,7 @@ namespace TinyGecko.Pathfinding2D
         /// <param name="index">index of the structure on the list</param>
         public void SelectStructure(int index)
         {
-            if (index < 0 && index >= _structuresPrefabs.Count)
+            if (index < 0 || index >= _structuresPrefabs.Count)
                 return;
             if (_structuresPrefabs[index] == null)
                 return;
@@ -157,6 +214,41 @@ namespace TinyGecko.Pathfinding2D
             GameObject structure = Instantiate(_structuresPrefabs[index]);
             StructureToPlace = structure.GetComponent<Structure>();
         }
+
+        /// <summary>
+        /// Funciton to check if there's a structure at around a given position
+        /// </summary>
+        /// <returns>The corresponding structure. Null if there isn't any</returns>
+        public Structure StructureAtPosition(Vector3 pos)
+        {
+            foreach(var structure in _placedStructures)
+            {
+                bool result = StructureInsideRegion(structure, pos);
+                if (result)
+                    return structure;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Helper function to verify if a structure is inside a region
+        /// </summary>
+        /// <param name="structure">Structure ref</param>
+        /// <param name="pos">Position to check</param>
+        /// <returns>True if pos is inside structure bounds. False otherwise</returns>
+        private bool StructureInsideRegion(Structure structure, Vector3 pos)
+        {
+            float celSize = WorldGrid.Instance.CelSize;
+            float halfSizeX = structure.EntitySize.x * celSize / 2.0f;
+            float halfSizeY = structure.EntitySize.y * celSize / 2.0f;
+            float minX = structure.WorldPos.x - halfSizeX;
+            float maxX = structure.WorldPos.x + halfSizeX;
+            float minY = structure.WorldPos.y - halfSizeY;
+            float maxY = structure.WorldPos.y + halfSizeY;
+
+            return pos.x >= minX && pos.x <= maxX && pos.y >= minY && pos.y <= maxY;
+        }
+
         #endregion Structure Selection Methods
     }
 }
