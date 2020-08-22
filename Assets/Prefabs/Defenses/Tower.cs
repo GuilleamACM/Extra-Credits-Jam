@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TinyGecko.Pathfinding2D;
 
+[RequireComponent(typeof(Structure))]
 public abstract class Tower : MonoBehaviour
 {
     [SerializeField]
@@ -29,7 +31,7 @@ public abstract class Tower : MonoBehaviour
         this.stalled = false;
     }
 
-    protected bool Fire() 
+    protected virtual bool Fire() 
     {
         if(!stalled)
             FireAllCannons();

@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2710646363341899359, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: _entitySize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2710646363341899359, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: _entitySize.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3735270157520374889, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: m_Name
@@ -161,8 +171,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ea1f21261a9256c4e94cf1983537a446,
-        type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7450629660574675607, guid: 605e9408ddb31d843b72bb8d42681e76, type: 3}
     - {fileID: 7450629660215826644, guid: 605e9408ddb31d843b72bb8d42681e76, type: 3}
@@ -374,6 +383,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
 --- !u!114 &8991631127622790600 stripped
 MonoBehaviour:
@@ -455,6 +468,10 @@ PrefabInstance:
       value: CannonHead (6)
       objectReference: {fileID: 0}
     m_RemovedComponents:
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
     - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
     - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
     - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
