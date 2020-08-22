@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TinyGecko.Pathfinding2D;
 
+[RequireComponent(typeof(Structure))]
 public abstract class Tower : MonoBehaviour
 {
     [SerializeField]

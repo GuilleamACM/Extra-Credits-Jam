@@ -7,7 +7,6 @@ namespace TinyGecko.Pathfinding2D
     {
         #region Fields
         [SerializeField] private Vector2Int _entitySize;
-        [SerializeField] private Sprite structureSprite;
         #endregion Fields
 
 
@@ -20,10 +19,6 @@ namespace TinyGecko.Pathfinding2D
 
 
         #region MonoBehaviour Methods
-        private void OnValidate()
-        {
-            GetComponent<SpriteRenderer>().sprite = structureSprite;
-        }
         #endregion MonoBehaviour Methods
     }
 }

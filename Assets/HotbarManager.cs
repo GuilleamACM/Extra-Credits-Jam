@@ -23,12 +23,13 @@ public class HotbarManager : MonoBehaviour
 
     public void SelectSlot(int slot)
     {
-        var index = slot - 1;
+        //var index = slot - 1;
         Sequence hotbarSequence = DOTween.Sequence();
+        currentSelectedSlot = slot;
 
         for (int i = 0; i < hotbarSlots.Length; i++)
         {
-            if (i == index)
+            if (i == slot)
             {
                 hotbarSequence.Join(hotbarSlots[i].transform.DOScale(1.2f, 0.5f));
             }

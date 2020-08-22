@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region Fields
+    public HotbarManager hotbar;
     private Structure _structureAtMouse;
     private PlayerStatus _playerStatus;
     #endregion Fields
@@ -22,18 +23,27 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             StructureManager.Instance.SelectStructure(0);
+            hotbar.SelectSlot(0);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             StructureManager.Instance.SelectStructure(1);
+            hotbar.SelectSlot(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             StructureManager.Instance.SelectStructure(2);
+            hotbar.SelectSlot(2);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             StructureManager.Instance.SelectStructure(3);
+            hotbar.SelectSlot(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            StructureManager.Instance.SelectStructure(4);
+            hotbar.SelectSlot(4);
         }
 
         Structure lastStructureAtMouse = _structureAtMouse;
