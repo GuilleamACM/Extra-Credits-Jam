@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AimCannon : MonoBehaviour
+public class AimCannon : Tower
 {
-    public CannonHead cannon;
     public float TimeAiming;
 
 
@@ -40,7 +39,7 @@ public class AimCannon : MonoBehaviour
 
     public float turnSpeed = 20f;
 
-    void LookAtTarget() 
+    void LookAtTarget()
     {
         //float dist = 0.15f;
         //Vector3 targetDir = target.position - transform.position;
@@ -61,10 +60,10 @@ public class AimCannon : MonoBehaviour
         Quaternion LookRotation = Quaternion.LookRotation(targetDir);
         Vector3 rotation = Quaternion.Lerp(transform.rotation, LookRotation, Time.deltaTime * turnSpeed).eulerAngles;
         //Debug.Log(rotation.z);
-        transform.rotation = Quaternion.Euler(0f,0f,rotation.z);
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation.z);
         if (targetDir.x < 0f)
         {
-            transform.Rotate(0,0,180f);
+            transform.Rotate(0, 0, 180f);
         }
 
 
@@ -73,10 +72,6 @@ public class AimCannon : MonoBehaviour
 
         //transform.eulerAngles = new Vector3(0,0,Mathf.Rad2Deg * angle);
         //transform.LookAt(target.position);
-    }
-    void Fire() 
-    {
-        cannon.Fire();
     }
 
     void ResetTimer() 

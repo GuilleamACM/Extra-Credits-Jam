@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddd1e8c38267eb43890c5c2f08ccf96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cannons:
+  stalled: 0
+  cannons:
   - {fileID: 188797820658700107}
   BulletHolder: {fileID: 0}
   TimeBetweenShots: 0.2

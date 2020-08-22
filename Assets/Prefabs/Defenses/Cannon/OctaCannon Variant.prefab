@@ -84,6 +84,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
+      propertyPath: cannons.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
       propertyPath: Cannons.Array.data[4]
       value: 
       objectReference: {fileID: 8991631127622790600}
@@ -112,6 +117,46 @@ PrefabInstance:
       propertyPath: TimeBetweenShots
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: cannons.Array.data[0]
+      value: 
+      objectReference: {fileID: 8991631126895852640}
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: cannons.Array.data[1]
+      value: 
+      objectReference: {fileID: 8991631127069677091}
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: cannons.Array.data[2]
+      value: 
+      objectReference: {fileID: 8991631127688239211}
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: cannons.Array.data[3]
+      value: 
+      objectReference: {fileID: 8991631126378844349}
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: cannons.Array.data[4]
+      value: 
+      objectReference: {fileID: 8991631127622790600}
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: cannons.Array.data[5]
+      value: 
+      objectReference: {fileID: 8991631126275095421}
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: cannons.Array.data[6]
+      value: 
+      objectReference: {fileID: 8991631126724904238}
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: cannons.Array.data[7]
+      value: 
+      objectReference: {fileID: 8991631126822870973}
     - target: {fileID: 3735270157520374895, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: m_Sprite
@@ -130,6 +175,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1994325997820972790}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8991631126895852640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7450629660574675606, guid: 605e9408ddb31d843b72bb8d42681e76,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994325997820972790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7b0441735495a4faa17dacc543deb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8991631127069677091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7450629660215826645, guid: 605e9408ddb31d843b72bb8d42681e76,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994325997820972790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7b0441735495a4faa17dacc543deb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8991631127688239211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7450629659764577949, guid: 605e9408ddb31d843b72bb8d42681e76,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994325997820972790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7b0441735495a4faa17dacc543deb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8991631126378844349 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7450629658927308363, guid: 605e9408ddb31d843b72bb8d42681e76,
+    type: 3}
+  m_PrefabInstance: {fileID: 1994325997820972790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7b0441735495a4faa17dacc543deb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2916956550068664049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -448,6 +541,10 @@ PrefabInstance:
       value: CannonHead (5)
       objectReference: {fileID: 0}
     m_RemovedComponents:
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
+    - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
     - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
 --- !u!114 &8991631126275095421 stripped

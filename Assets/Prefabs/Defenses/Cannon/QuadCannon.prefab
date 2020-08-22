@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddd1e8c38267eb43890c5c2f08ccf96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cannons:
+  stalled: 0
+  cannons:
   - {fileID: 7450629660574675606}
   - {fileID: 7450629660215826645}
   - {fileID: 7450629659764577949}
