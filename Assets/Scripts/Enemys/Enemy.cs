@@ -10,7 +10,8 @@ public class Enemy : MonoBehaviour
     public float MovementSpeed { get; private set; }
 
     public int maxHealth;
-    private float health;
+    [SerializeField]
+    private int health;
 
     private bool isDead;
 
@@ -20,7 +21,7 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(int amount)
     {
         health -= amount;
 
@@ -30,7 +31,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Heal(float amount)
+    public void Heal(int amount)
     {
         if(health + amount > maxHealth)
         {
