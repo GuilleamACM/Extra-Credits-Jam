@@ -6,10 +6,11 @@ using TinyGecko.Pathfinding2D;
 [RequireComponent(typeof(Structure))]
 public abstract class Tower : MonoBehaviour
 {
-    [SerializeField]
-    bool stalled = false;
+    public bool stalled = true;
     public CannonHead[] cannons;
     public Transform BulletHolder;
+
+
 
     private void Start()
     {

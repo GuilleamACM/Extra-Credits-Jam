@@ -33,6 +33,7 @@ namespace TinyGecko.Pathfinding2D
         [SerializeField] List<GridCelState> _validPlacementStates = new List<GridCelState>();
         private List<Structure> _placedStructures;
         private Structure _structureToPlace;
+        private PlayerStatus status;
         #endregion Fields
 
 
@@ -44,6 +45,11 @@ namespace TinyGecko.Pathfinding2D
 
 
         #region MonoBehaviour Methods
+        private void Start()
+        {
+            this.status = GameObject.FindObjectOfType<PlayerStatus>();
+        }
+
         private void Update()
         {
             // Select Structures
@@ -59,7 +65,7 @@ namespace TinyGecko.Pathfinding2D
                 pos = new Vector3(pos.x, pos.y, 0);
                 StructureToPlace.transform.position = pos;
 
-                var canPlace = CanPlaceStructure(StructureToPlace);
+                var canPlace = CanPlaceStructure(StructureToPlace,status);
                 if (canPlace.Item1)
                     StructureToPlace.gameObject.GetComponent<SpriteRenderer>().color = _validPlace;
                 else
@@ -105,7 +111,7 @@ namespace TinyGecko.Pathfinding2D
         /// A tuple containing a bool to know if it can be placed an the cels 
         /// that the structure is/will occupy
         /// </returns>
-        private Tuple<bool, List<GridCel>> CanPlaceStructure(Structure structure)
+        private Tuple<bool, List<GridCel>> CanPlaceStructure(Structure structure, PlayerStatus status)
         {
             var cels = OverlappingGrids(structure);
             foreach(var cel in cels)
@@ -114,7 +120,7 @@ namespace TinyGecko.Pathfinding2D
                     return Tuple.Create(false, cels);
             }
 
-            return Tuple.Create(cels.Count == structure.EntitySize.x * structure.EntitySize.y, cels);
+            return Tuple.Create(cels.Count == structure.EntitySize.x * structure.EntitySize.y && !status.WillLooseIfPlaced(structure), cels);
         }
 
         /// <summary>
@@ -149,11 +155,12 @@ namespace TinyGecko.Pathfinding2D
             if (!StructureToPlace)
                 return false;
 
-            var canPlace = CanPlaceStructure(StructureToPlace);
+            var canPlace = CanPlaceStructure(StructureToPlace, status);
             if (!canPlace.Item1)
                 return false;
 
             status.UsedMemory += StructureToPlace.memoryCost;
+            StructureToPlace.GetComponent<Tower>().stalled = false;
             PlaceStructure(StructureToPlace, canPlace.Item2);
             return true;
         }

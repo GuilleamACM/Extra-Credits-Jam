@@ -6,9 +6,10 @@ class PlayerStatus : MonoBehaviour
     #region Fields
     [SerializeField] int _totalMemory = 4096;
     [SerializeField] float usageOfCPU = 0;
+    [SerializeField] int initialBlockedMemory;
 
-    private int _usedMemory = 0;
-    private int _blockedMemory = 0;
+    [SerializeField]private int _usedMemory = 0;
+    [SerializeField]private int _blockedMemory = 0;
     private int _score = 0;
     #endregion Field
 
@@ -19,7 +20,7 @@ class PlayerStatus : MonoBehaviour
         get => _usedMemory;
         set
         {
-            _usedMemory += value;
+            _usedMemory = value;
             if (_usedMemory <= 0)
                 _usedMemory = 0;
 
@@ -34,7 +35,7 @@ class PlayerStatus : MonoBehaviour
         get => _blockedMemory;
         set
         {
-            _blockedMemory += value;
+            _blockedMemory = value;
             if (_blockedMemory <= 0)
                 _blockedMemory = 0;
 
@@ -60,12 +61,12 @@ class PlayerStatus : MonoBehaviour
     #region Methods
     private bool LooseCondition()
     {
-        return _usedMemory + _blockedMemory >= _totalMemory;
+        return _usedMemory + _blockedMemory > _totalMemory;
     }
 
     public bool WillLooseIfPlaced(Structure structure)
     {
-        return _usedMemory + _blockedMemory + structure.memoryCost >= _totalMemory;
+        return _usedMemory + _blockedMemory + structure.memoryCost > _totalMemory;
     }
     #endregion Methods
 

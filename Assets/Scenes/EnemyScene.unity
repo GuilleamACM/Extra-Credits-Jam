@@ -2014,13 +2014,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _structuresPrefabs:
-  - {fileID: 3735270157520374889, guid: 605e9408ddb31d843b72bb8d42681e76, type: 3}
-  - {fileID: 0}
+  - {fileID: 5220222869520270076, guid: 6ef17fc8766332b429c18f110dcd7fea, type: 3}
+  - {fileID: 2916956550963430047, guid: 862c8a06806af6a4aa7520365dde3d50, type: 3}
   - {fileID: 276307053873782022, guid: 630662e0df7266048b8c4e79132f9284, type: 3}
+  - {fileID: 3735270157520374889, guid: 605e9408ddb31d843b72bb8d42681e76, type: 3}
   - {fileID: 6209640110203695506, guid: fc0d3427b21fe394a8ad446a1fd37d16, type: 3}
   _validPlace: {r: 1, g: 1, b: 1, a: 0.7}
   _invalidPlace: {r: 0.6, g: 0.1, b: 0, a: 0.7}
-  _validPlacementStates: 
+  _validPlacementStates: 01000000
 --- !u!4 &225265062
 Transform:
   m_ObjectHideFlags: 0
@@ -10896,7 +10897,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ea1f21261a9256c4e94cf1983537a446, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 112d360257e427e45b08a2360abbb77b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14691,7 +14692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ea1f21261a9256c4e94cf1983537a446, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42cc6bd436a4fd44bb493911ba371979, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15350,7 +15351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ea1f21261a9256c4e94cf1983537a446, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bfe024efe080dbe46b1d32562d3830cf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15909,7 +15910,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ea1f21261a9256c4e94cf1983537a446, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22b6bb0f0cc820f40b3e0cefa089f694, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17447,6 +17448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912b8cd03e307d2489a654dc0be5bcc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hotbar: {fileID: 1548080444}
 --- !u!114 &1603334923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17459,8 +17461,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde2fbb6f5be0d442868af078ae0b968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalMemory: 4096
+  _totalMemory: 2048
   usageOfCPU: 0
+  initialBlockedMemory: 0
+  _usedMemory: 0
+  _blockedMemory: 0
 --- !u!4 &1603334924
 Transform:
   m_ObjectHideFlags: 0
@@ -20818,6 +20823,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1984015983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1984015984}
+  - component: {fileID: 1984015985}
+  m_Layer: 0
+  m_Name: World_Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1984015984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984015983}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1984015985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984015983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c4b6d4be4760d42ad4fc5448dfd172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _celSize: 1
+  _gridSize: {x: 18, y: 10}
 --- !u!1 &1986241383
 GameObject:
   m_ObjectHideFlags: 0

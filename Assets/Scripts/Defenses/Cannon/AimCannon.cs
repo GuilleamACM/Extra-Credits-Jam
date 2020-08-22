@@ -26,7 +26,10 @@ public class AimCannon : Tower
             this.currentTime += Time.deltaTime;
             if (this.currentTime >= TimeAiming) 
             {
-                Fire();
+                if (!base.stalled) 
+                {
+                    Fire();
+                }
                 ResetTimer();
                 this.target = null;
             }
