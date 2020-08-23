@@ -20,6 +20,27 @@ TextureImporter:
   - first:
       213: -8760288009359856575
     second: Towers_5
+  - first:
+      213: 3185778691125062461
+    second: Towers_0
+  - first:
+      213: 5028595988949632904
+    second: Towers_1
+  - first:
+      213: -3054076330270480259
+    second: Towers_2
+  - first:
+      213: -7768410348252699661
+    second: Towers_3
+  - first:
+      213: 1880543965350454814
+    second: Towers_4
+  - first:
+      213: -9036158543148092973
+    second: Towers_5
+  - first:
+      213: 9009940924685856453
+    second: Towers_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -137,14 +158,14 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c23826434eb127aa0800000000000000
-      internalID: -6164834272971422932
+      spriteID: d3ba48137d8263c20800000000000000
+      internalID: 3185778691125062461
       vertices: []
       indices: 
       edges: []
@@ -158,14 +179,14 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d31bf8ed0aceb8d50800000000000000
-      internalID: 6740741442962960701
+      spriteID: 8870c48c86929c540800000000000000
+      internalID: 5028595988949632904
       vertices: []
       indices: 
       edges: []
@@ -179,14 +200,14 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59f276256568cacd0800000000000000
-      internalID: -2545511984063369323
+      spriteID: d78ac4142cdbd95d0800000000000000
+      internalID: -3054076330270480259
       vertices: []
       indices: 
       edges: []
@@ -200,14 +221,14 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f4ecffbda4ed2550800000000000000
-      internalID: 6137813302077351160
+      spriteID: 3f3ede272ff013490800000000000000
+      internalID: -7768410348252699661
       vertices: []
       indices: 
       edges: []
@@ -221,14 +242,14 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e234326a5b03ac110800000000000000
-      internalID: 1281890600674870062
+      spriteID: e16e73fd5c8091a10800000000000000
+      internalID: 1880543965350454814
       vertices: []
       indices: 
       edges: []
@@ -242,14 +263,35 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14cedff28743d6680800000000000000
-      internalID: -8760288009359856575
+      spriteID: 3d1fb8d3ead199280800000000000000
+      internalID: -9036158543148092973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Towers_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cea727c88db90d70800000000000000
+      internalID: 9009940924685856453
       vertices: []
       indices: 
       edges: []
