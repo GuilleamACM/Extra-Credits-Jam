@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         if (!curStructure)
             return;
 
-        curStructure.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        curStructure.gameObject.GetComponent<SpriteRenderer>().color = Color.grey;
     }
     #endregion Methods
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 namespace TinyGecko.Pathfinding2D
 {
@@ -140,7 +141,12 @@ namespace TinyGecko.Pathfinding2D
             _placedStructures.Add(structure);
 
             structure.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            Transform structureTransform = StructureToPlace.transform;
+            Sequence seq = DOTween.Sequence();
             StructureToPlace = null;
+            seq.Append(structureTransform.DOScale(new Vector3(1.25f, 0.75f, 1.0f), 0.075f));
+            seq.Append(structureTransform.DOScale(new Vector3(0.85f, 1.15f, 1.0f), 0.075f));
+            seq.Append(structureTransform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 0.075f));
         }
 
         /// <summary>
@@ -183,7 +189,14 @@ namespace TinyGecko.Pathfinding2D
                 foreach(var cel in structure.OccupyingCels)
                     cel.celState = GridCelState.Free;
                 
-                Destroy(structure.gameObject);
+                Sequence seq = DOTween.Sequence();
+                seq.Append(structure.transform.DOScale(new Vector3(1.15f, 0.9f, 1.0f), 0.075f));
+                seq.Append(structure.transform.DOScale(new Vector3(1.35f, 1.25f, 1.0f), 0.075f));
+                seq.Append(structure.transform.DOScale(new Vector3(0.5f, 0.5f, 1.0f), 0.035f));
+                seq.AppendCallback(() => {
+                    Destroy(structure.gameObject);
+                });
+
                 status.UsedMemory -= structure.memoryCost;
                 return _placedStructures.Remove(structure);
             }
