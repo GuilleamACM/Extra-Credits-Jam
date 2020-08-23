@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
     public int memoryUsage = 128;
     public float defaultMovementSpeed = 4f;
+    public float HijackTime = 5f;
     public float MovementSpeed { get; private set; }
 
     public int maxHealth;
@@ -35,6 +36,12 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(HealCoroutine());
         }
+    }
+
+    public void HijackTower(Tower t) 
+    {
+        t.Stall(HijackTime);
+        Die();
     }
 
     IEnumerator HealCoroutine() 
