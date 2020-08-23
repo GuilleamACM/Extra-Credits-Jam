@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestWave
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 390284860155290400, guid: d47df28c469d4e94dbc76b0c52ceb12a, type: 3}
+  - {fileID: 671354462475355264, guid: bff7d9e0666f0334ca5bbb9728889500, type: 3}
   - {fileID: 3273170517487067451, guid: 264fe0fdbaae7504d9e5e59d64d63a93, type: 3}
   - {fileID: 390284860155290400, guid: d47df28c469d4e94dbc76b0c52ceb12a, type: 3}
   - {fileID: 3273170517487067451, guid: 264fe0fdbaae7504d9e5e59d64d63a93, type: 3}
