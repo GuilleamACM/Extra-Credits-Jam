@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LandMine : MonoBehaviour
+public class LandMine : Tower
 {
     public static string EnemyTag = "Enemy";
     [Range(0f, 1f)]
@@ -26,7 +26,8 @@ public class LandMine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        HitCheck(collision);
+        if(!stalled)
+            HitCheck(collision);
     }
 
     void HitCheck(Collider2D collision)
