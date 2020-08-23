@@ -51,6 +51,11 @@ class PlayerStatus : MonoBehaviour
 
 
     #region MonoBehaviour Methods
+    private void Start()
+    {
+        BlockedMemory = initialBlockedMemory;    
+    }
+
     private void Update()
     {
         
