@@ -16,12 +16,15 @@ public class EnemyWaypointMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector3 waypointDirection = target.position - transform.position;
-        transform.Translate(waypointDirection.normalized * enemy.MovementSpeed * Time.deltaTime, Space.World);
-
-        if(Vector3.Distance(transform.position, target.position) <= 0.05f)
+        Vector3 waypointDirection = (target.position - transform.position).normalized * enemy.MovementSpeed * Time.deltaTime;
+        float distance = Vector3.Distance(transform.position, target.position);
+        if (distance <= Vector3.Distance(transform.position + waypointDirection,target.position)) 
         {
             GetNextWaypoint();
+        }
+        else
+        {
+            transform.Translate(waypointDirection, Space.World);
         }
     }
 
