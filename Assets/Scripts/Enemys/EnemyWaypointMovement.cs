@@ -11,6 +11,7 @@ public class EnemyWaypointMovement : MonoBehaviour
     private Transform targetTower;
     private Vector3 target;
     private int currentWaypointIndex = 0;
+    bool noTower = false;
 
     private Enemy enemy;
 
@@ -37,9 +38,18 @@ public class EnemyWaypointMovement : MonoBehaviour
     {
         this.pf = new Pathfinder(WorldGrid.Instance);
         var sm = StructureManager.Instance;
-        targetTower = sm.PlacedStructures[Random.Range(0, sm.PlacedStructures.Count)].transform;
-        path = pf.FindPath(transform.position, targetTower.GetComponent<Structure>());
-        target = path.Dequeue().worldPos;
+        if (sm.PlacedStructures.Count > 0)
+        {
+            targetTower = sm.PlacedStructures[Random.Range(0, sm.PlacedStructures.Count)].transform;
+            path = pf.FindPath(transform.position, targetTower.GetComponent<Structure>());
+            target = path.Dequeue().worldPos;
+            noTower = false;
+        }
+        else 
+        {
+            noTower = true;
+            target = Waypoints.waypoints[currentWaypointIndex].position;
+        }
     }
 
     private void Update()
@@ -62,7 +72,7 @@ public class EnemyWaypointMovement : MonoBehaviour
 
     private void GetNextWaypoint()
     {
-        if (this.type == WaypointType.Normal)
+        if (this.type == WaypointType.Normal || noTower)
         {
             if (currentWaypointIndex >= Waypoints.waypoints.Length - 1)
             {
@@ -87,7 +97,7 @@ public class EnemyWaypointMovement : MonoBehaviour
     private void ReachObjective()
     {
         //Decrease the Player RAM or CPU
-        if (type == WaypointType.Normal)
+        if (type == WaypointType.Normal || noTower)
         {
             PlayerStatus.Instance.UsedMemory += enemy.memoryUsage;
             WaveSpawner.Instance.RemoveEnemy(enemy);
