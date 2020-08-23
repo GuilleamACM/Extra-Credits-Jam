@@ -15,11 +15,48 @@ public class Enemy : MonoBehaviour
     private int health;
 
     private bool isDead;
+    public EnemyType _type = EnemyType.Normal;
+
+    public float HealRange = 5f;
+    public int HealAmount = 20;
+    public float HealCooldown = 5f;
+
+    public enum EnemyType 
+    {
+        Normal,
+        Healer
+    }
 
     private void Start()
     {
         MovementSpeed = defaultMovementSpeed;
         health = maxHealth;
+        if (this._type == EnemyType.Healer) 
+        {
+            StartCoroutine(HealCoroutine());
+        }
+    }
+
+    IEnumerator HealCoroutine() 
+    {
+        yield return new WaitForSeconds(HealCooldown);
+        HealEnemysAround();
+    }
+
+    void HealEnemysAround() 
+    {
+        foreach (Transform t in WaveSpawner.Instance.GetEnemiesTransform())
+        {
+            if (Vector3.Distance(this.transform.position, t.position) <= HealRange)
+            {
+                t.GetComponent<Enemy>().Heal(HealAmount);
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        this.StopAllCoroutines();
     }
 
     public void TakeDamage(int amount)
@@ -44,9 +81,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Slow(float percentage)
+    public void Slow(float percentage,float time)
     {
         MovementSpeed = defaultMovementSpeed * (1f - percentage);
+        StartCoroutine(WaitResetSpeed(time));
+    }
+
+    IEnumerator WaitResetSpeed(float time) 
+    {
+        yield return new WaitForSeconds(time);
+        ResetSpeed();
     }
 
     public void IncreaseSpeed(float percentage)

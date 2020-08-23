@@ -61,9 +61,7 @@ namespace TinyGecko.Pathfinding2D
             // Place Structures on Mouse Down
             if(StructureToPlace != null)
             {
-                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                pos = new Vector3(pos.x, pos.y, 0);
-                StructureToPlace.transform.position = pos;
+                UpdateStructureToPlacePosition();
 
                 var canPlace = CanPlaceStructure(StructureToPlace,status);
                 if (canPlace.Item1)
@@ -221,6 +219,14 @@ namespace TinyGecko.Pathfinding2D
 
             GameObject structure = Instantiate(_structuresPrefabs[index]);
             StructureToPlace = structure.GetComponent<Structure>();
+            UpdateStructureToPlacePosition();
+        }
+
+        void UpdateStructureToPlacePosition() 
+        {
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos = new Vector3(pos.x, pos.y, 0);
+            StructureToPlace.transform.position = pos;
         }
 
         /// <summary>
