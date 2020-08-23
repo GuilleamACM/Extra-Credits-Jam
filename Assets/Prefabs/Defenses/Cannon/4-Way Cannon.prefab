@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3735270157520374894}
   - component: {fileID: 2710646363341899359}
   m_Layer: 0
-  m_Name: QuadCannon
+  m_Name: 4-Way Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a370f505af78a9a46808596afecc9a20, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,7 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: bfe024efe080dbe46b1d32562d3830cf, type: 3}
+  m_Sprite: {fileID: 6740741442962960701, guid: 548234134c46805459e1ed3a948f2f42,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,12 +132,12 @@ PrefabInstance:
     - target: {fileID: 6103411421784582474, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6103411421784582474, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.513
       objectReference: {fileID: 0}
     - target: {fileID: 6103411421784582474, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
         type: 3}
@@ -188,6 +189,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonHead (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6103411421784582476, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
+        type: 3}
+      propertyPath: BulletPrefab
+      value: 
+      objectReference: {fileID: 8539596354766513478, guid: 2c09e1e8fff15654e869d29251b43443,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
@@ -219,12 +226,12 @@ PrefabInstance:
     - target: {fileID: 6103411421784582474, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6103411421784582474, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.513
       objectReference: {fileID: 0}
     - target: {fileID: 6103411421784582474, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
         type: 3}
@@ -276,6 +283,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonHead
       objectReference: {fileID: 0}
+    - target: {fileID: 6103411421784582476, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
+        type: 3}
+      propertyPath: BulletPrefab
+      value: 
+      objectReference: {fileID: 8539596354766513478, guid: 2c09e1e8fff15654e869d29251b43443,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
@@ -312,7 +325,7 @@ PrefabInstance:
     - target: {fileID: 6103411421784582474, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15
+      value: 0.513
       objectReference: {fileID: 0}
     - target: {fileID: 6103411421784582474, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
         type: 3}
@@ -364,6 +377,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonHead (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6103411421784582476, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
+        type: 3}
+      propertyPath: BulletPrefab
+      value: 
+      objectReference: {fileID: 8539596354766513478, guid: 2c09e1e8fff15654e869d29251b43443,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
@@ -400,7 +419,7 @@ PrefabInstance:
     - target: {fileID: 6103411421784582474, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.15
+      value: 0.513
       objectReference: {fileID: 0}
     - target: {fileID: 6103411421784582474, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
         type: 3}
@@ -452,6 +471,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: CannonHead (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6103411421784582476, guid: 1e0a46315c8c2f745b2e6bbb909099c6,
+        type: 3}
+      propertyPath: BulletPrefab
+      value: 
+      objectReference: {fileID: 8539596354766513478, guid: 2c09e1e8fff15654e869d29251b43443,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 6103411421784582477, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a46315c8c2f745b2e6bbb909099c6, type: 3}
