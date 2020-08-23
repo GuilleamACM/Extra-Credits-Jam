@@ -1,24 +1,56 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using TinyGecko.Pathfinding2D;
 
 [RequireComponent(typeof(Enemy))]
 public class EnemyWaypointMovement : MonoBehaviour
 {
-    private Transform target;
+    public WaypointType type = WaypointType.Normal;
+    private Pathfinder pf;
+    private Queue<GridCel> path;
+    private Transform targetTower;
+    private Vector3 target;
     private int currentWaypointIndex = 0;
 
     private Enemy enemy;
 
+    public enum WaypointType 
+    {
+        Normal,
+        Hijacker
+    }
+
     private void Start()
     {
         enemy = GetComponent<Enemy>();
-        target = Waypoints.waypoints[0];
+        if (this.type == WaypointType.Normal)
+        {
+            target = Waypoints.waypoints[0].position;
+        }
+        else 
+        {
+            SetPathHijacker();
+        }
+    }
+
+    void SetPathHijacker() 
+    {
+        this.pf = new Pathfinder(WorldGrid.Instance);
+        var sm = StructureManager.Instance;
+        targetTower = sm.PlacedStructures[Random.Range(0, sm.PlacedStructures.Count)].transform;
+        path = pf.FindPath(transform.position, targetTower.GetComponent<Structure>());
+        target = path.Dequeue().worldPos;
     }
 
     private void Update()
     {
-        Vector3 waypointDirection = (target.position - transform.position).normalized * enemy.MovementSpeed * Time.deltaTime;
-        float distance = Vector3.Distance(transform.position, target.position);
-        if (distance <= Vector3.Distance(transform.position + waypointDirection,target.position)) 
+        if (type == WaypointType.Hijacker && !targetTower) 
+        {
+            SetPathHijacker();
+        }
+        Vector3 waypointDirection = (target - transform.position).normalized * enemy.MovementSpeed * Time.deltaTime;
+        float distance = Vector3.Distance(transform.position, target);
+        if (distance <= Vector3.Distance(transform.position + waypointDirection,target)) 
         {
             GetNextWaypoint();
         }
@@ -30,21 +62,40 @@ public class EnemyWaypointMovement : MonoBehaviour
 
     private void GetNextWaypoint()
     {
-        if(currentWaypointIndex >= Waypoints.waypoints.Length - 1)
+        if (this.type == WaypointType.Normal)
         {
-            ReachObjective();
-            return;
-        }
+            if (currentWaypointIndex >= Waypoints.waypoints.Length - 1)
+            {
+                ReachObjective();
+                return;
+            }
 
-        currentWaypointIndex++;
-        target = Waypoints.waypoints[currentWaypointIndex];
+            currentWaypointIndex++;
+            target = Waypoints.waypoints[currentWaypointIndex].position;
+        }
+        else 
+        {
+            if (path.Count == 0) 
+            {
+                ReachObjective();
+                return;
+            }
+            target = path.Dequeue().worldPos;
+        }
     }
 
     private void ReachObjective()
     {
         //Decrease the Player RAM or CPU
-        PlayerStatus.Instance.UsedMemory += enemy.memoryUsage;
-        WaveSpawner.Instance.RemoveEnemy(enemy);
-        Destroy(gameObject);
+        if (type == WaypointType.Normal)
+        {
+            PlayerStatus.Instance.UsedMemory += enemy.memoryUsage;
+            WaveSpawner.Instance.RemoveEnemy(enemy);
+            Destroy(gameObject);
+        }
+        else 
+        {
+            enemy.HijackTower(targetTower.GetComponent<Tower>());
+        }
     }
 }
