@@ -4,9 +4,9 @@ using UnityEngine;
 class PlayerStatus : MonoBehaviour
 {
     #region Fields
-    [SerializeField] int _totalMemory = 4096;
-    [SerializeField] float usageOfCPU = 0;
-    [SerializeField] int initialBlockedMemory;
+    [SerializeField] private int _totalMemory = 4096;
+    [SerializeField] private float usageOfCPU = 0;
+    [SerializeField] private int initialBlockedMemory;
 
     [SerializeField]private int _usedMemory = 0;
     [SerializeField]private int _blockedMemory = 0;
@@ -43,6 +43,8 @@ class PlayerStatus : MonoBehaviour
             if (_usedMemory <= 0)
                 _usedMemory = 0;
 
+            RamManager.Instance.UpdateBars(TotalMemory, UsedMemory, BlockedMemory);
+
             if (LooseCondition())
             {
                 GameManager.Instance.GameOver();
@@ -58,10 +60,21 @@ class PlayerStatus : MonoBehaviour
             if (_blockedMemory <= 0)
                 _blockedMemory = 0;
 
+            RamManager.Instance.UpdateBars(TotalMemory, UsedMemory, BlockedMemory);
+
             if (LooseCondition())
             {
                 GameManager.Instance.GameOver();
             }
+        }
+    }
+
+    public int TotalMemory
+    {
+        get => _totalMemory;
+        private set
+        {
+            _totalMemory = value;
         }
     }
 
@@ -73,11 +86,6 @@ class PlayerStatus : MonoBehaviour
     private void Start()
     {
         BlockedMemory = initialBlockedMemory;    
-    }
-
-    private void Update()
-    {
-        
     }
     #endregion MonoBehaviour Method
 
