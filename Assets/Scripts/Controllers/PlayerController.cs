@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerStatus = GetComponent<PlayerStatus>();    
 
-        Debug.Log($"Player Status");
+        //Debug.Log($"Player Status");
     }
 
     void Update()
@@ -44,6 +44,11 @@ public class PlayerController : MonoBehaviour
         {
             StructureManager.Instance.SelectStructure(4);
             hotbar.SelectSlot(4);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            StructureManager.Instance.SelectStructure(5);
+            hotbar.SelectSlot(5);
         }
 
         Structure lastStructureAtMouse = _structureAtMouse;
