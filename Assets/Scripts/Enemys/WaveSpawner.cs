@@ -33,6 +33,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void OnDestroy()
     {
+        enemiesAlive = 0;
         Instance = null;
     }
 
@@ -57,8 +58,6 @@ public class WaveSpawner : MonoBehaviour
         }
 
         countdown -= Time.deltaTime;
-
-        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
     }
 
     IEnumerator SpawnWave()

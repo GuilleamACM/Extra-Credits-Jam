@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    public int memoryUsage = 128;
     public float defaultMovementSpeed = 4f;
     public float MovementSpeed { get; private set; }
 
