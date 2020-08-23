@@ -40,6 +40,7 @@ public class EnemyWaypointMovement : MonoBehaviour
     private void ReachObjective()
     {
         //Decrease the Player RAM or CPU
+        PlayerStatus.Instance.UsedMemory += enemy.memoryUsage;
         WaveSpawner.Instance.RemoveEnemy(enemy);
         Destroy(gameObject);
     }

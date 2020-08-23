@@ -13,6 +13,25 @@ class PlayerStatus : MonoBehaviour
     private int _score = 0;
     #endregion Field
 
+    #region Singleton
+    public static PlayerStatus Instance;
+    void Awake() 
+    {
+        if (!Instance)
+        {
+            Instance = this;
+        }
+        else 
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
+    #endregion Singleton
 
     #region Properties
     public int UsedMemory 
@@ -26,7 +45,7 @@ class PlayerStatus : MonoBehaviour
 
             if (LooseCondition())
             {
-                // TODO: Call GameManager.GameOver
+                GameManager.Instance.GameOver();
             }
         }
     }
@@ -41,21 +60,13 @@ class PlayerStatus : MonoBehaviour
 
             if (LooseCondition())
             {
-                // TODO: Call GameManager.GameOver
+                GameManager.Instance.GameOver();
             }
         }
     }
 
     public int Score { get => _score; set => _score = value; }
     #endregion Properties
-
-
-    #region MonoBehaviour Methods
-    private void Update()
-    {
-        
-    }
-    #endregion MonoBehaviour Method
 
 
     #region Methods
