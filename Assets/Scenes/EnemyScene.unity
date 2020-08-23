@@ -3024,6 +3024,10 @@ MonoBehaviour:
   _validPlace: {r: 1, g: 1, b: 1, a: 0.7}
   _invalidPlace: {r: 0.6, g: 0.1, b: 0, a: 0.7}
   _validPlacementStates: 01000000
+  _placementFXPrefab: {fileID: 32052447447341326, guid: 984e2514cd731d647b5d23830d1b5cc6,
+    type: 3}
+  _destroyFXPrefab: {fileID: 7753565046393570957, guid: d4d8c401a3a8be140acd38d4c6963a1b,
+    type: 3}
 --- !u!4 &225265062
 Transform:
   m_ObjectHideFlags: 0

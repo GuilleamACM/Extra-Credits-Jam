@@ -32,6 +32,8 @@ namespace TinyGecko.Pathfinding2D
         [SerializeField] private Color _validPlace = new Color(1.0f, 1.0f, 1.0f, 0.7f);
         [SerializeField] private Color _invalidPlace = new Color(0.6f, 0.1f, 0.0f, 0.7f);
         [SerializeField] List<GridCelState> _validPlacementStates = new List<GridCelState>();
+        [SerializeField] private GameObject _placementFXPrefab;
+        [SerializeField] private GameObject _destroyFXPrefab;
         private List<Structure> _placedStructures;
         private Structure _structureToPlace;
         private PlayerStatus status;
@@ -140,10 +142,13 @@ namespace TinyGecko.Pathfinding2D
             structure.OccupyingCels = cels;
             _placedStructures.Add(structure);
 
-            structure.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             Transform structureTransform = StructureToPlace.transform;
-            Sequence seq = DOTween.Sequence();
+            structure.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             StructureToPlace = null;
+            var go = Instantiate(_placementFXPrefab);
+            go.transform.position = structureTransform.position;
+
+            Sequence seq = DOTween.Sequence();
             seq.Append(structureTransform.DOScale(new Vector3(1.25f, 0.75f, 1.0f), 0.075f));
             seq.Append(structureTransform.DOScale(new Vector3(0.85f, 1.15f, 1.0f), 0.075f));
             seq.Append(structureTransform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 0.075f));
@@ -188,7 +193,10 @@ namespace TinyGecko.Pathfinding2D
             {
                 foreach(var cel in structure.OccupyingCels)
                     cel.celState = GridCelState.Free;
-                
+
+                var go = Instantiate(_destroyFXPrefab);
+                go.transform.position = structure.transform.position;
+
                 Sequence seq = DOTween.Sequence();
                 seq.Append(structure.transform.DOScale(new Vector3(1.15f, 0.9f, 1.0f), 0.075f));
                 seq.Append(structure.transform.DOScale(new Vector3(1.35f, 1.25f, 1.0f), 0.075f));
