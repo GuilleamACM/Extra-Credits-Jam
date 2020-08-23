@@ -44,9 +44,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Slow(float percentage)
+    public void Slow(float percentage,float time)
     {
         MovementSpeed = defaultMovementSpeed * (1f - percentage);
+        StartCoroutine(WaitResetSpeed(time));
+    }
+
+    IEnumerator WaitResetSpeed(float time) 
+    {
+        yield return new WaitForSeconds(time);
+        ResetSpeed();
     }
 
     public void IncreaseSpeed(float percentage)
