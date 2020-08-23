@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class WaveSpawner : MonoBehaviour
     public Wave[] waves;
     private List<Enemy> enemies;
     private List<Transform> enemiesTransform;
+
+    public UnityEvent enemysAlive;
+    bool enemysAliveLastFrame = false;
+    public UnityEvent NoEnemysAlive;
 
     public Transform spawnPoint;
 
@@ -41,8 +46,15 @@ public class WaveSpawner : MonoBehaviour
     {
         if (enemiesAlive > 0)
         {
+            if (!enemysAliveLastFrame) 
+            {
+                enemysAliveLastFrame = true;
+                enemysAlive.Invoke();
+            }
             return;
         }
+        enemysAliveLastFrame = false;
+        NoEnemysAlive.Invoke();
 
         if (waveIndex == waves.Length)
         {
