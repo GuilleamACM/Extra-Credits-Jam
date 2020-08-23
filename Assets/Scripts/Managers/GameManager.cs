@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Music / Sounds")]
     public string gameOverTrack;
+    public string levelCompleteTrack;
 
     private void Start()
     {
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
     public void LevelComplete() 
     {
         levelCompletedOverlay.SetActive(true);
+        AudioManager.Instance.PlayAudio(levelCompleteTrack);
     }
 
     public void GameOver() 

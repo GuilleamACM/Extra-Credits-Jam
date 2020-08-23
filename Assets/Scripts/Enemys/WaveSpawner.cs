@@ -46,7 +46,11 @@ public class WaveSpawner : MonoBehaviour
 
         if (waveIndex == waves.Length)
         {
-            //Level Completed
+            PlayerStatus ps = PlayerStatus.Instance;
+            if (ps.TotalMemory >= ps.UsedMemory + ps.BlockedMemory) 
+            {
+                GameManager.Instance.LevelComplete();
+            }
             this.enabled = false;
         }
 
