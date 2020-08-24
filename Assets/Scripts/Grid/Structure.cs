@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TinyGecko.Pathfinding2D
 {
-    class Structure : MonoBehaviour, IGridEntity
+    public class Structure : MonoBehaviour, IGridEntity
     {
         #region Fields
         [SerializeField] private Vector2Int _entitySize;

@@ -10,7 +10,7 @@ public class EnemyWaypointMovement : MonoBehaviour
     private Queue<GridCel> path;
     private Transform targetTower;
     private Vector3 target;
-    private int currentWaypointIndex = 0;
+    private SpriteRenderer spriteRenderer;
 
     private Enemy enemy;
 
@@ -20,12 +20,18 @@ public class EnemyWaypointMovement : MonoBehaviour
         Hijacker
     }
 
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     private void Start()
     {
         enemy = GetComponent<Enemy>();
         if (this.type == WaypointType.Normal)
         {
-            target = Waypoints.waypoints[0].position;
+            Structure core = Waypoints.CoreSructure;
+            path = WorldGrid.Instance.Pathfinder.FindPath(transform.position, core);
         }
         else 
         {
@@ -64,14 +70,13 @@ public class EnemyWaypointMovement : MonoBehaviour
     {
         if (this.type == WaypointType.Normal)
         {
-            if (currentWaypointIndex >= Waypoints.waypoints.Length - 1)
+            if (path.Count == 0)
             {
                 ReachObjective();
                 return;
             }
 
-            currentWaypointIndex++;
-            target = Waypoints.waypoints[currentWaypointIndex].position;
+            target = path.Dequeue().worldPos;
         }
         else 
         {
