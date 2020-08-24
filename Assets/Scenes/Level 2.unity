@@ -3184,7 +3184,7 @@ MonoBehaviour:
       m_Calls: []
   spawnPoint: {fileID: 1561247233}
   spawnPoint2: {fileID: 1021839142}
-  timeBetweenWaves: 3.5
+  timeBetweenWaves: 6
 --- !u!4 &1561247233
 Transform:
   m_ObjectHideFlags: 0
@@ -3243,7 +3243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde2fbb6f5be0d442868af078ae0b968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalMemory: 9216
+  _totalMemory: 9376
   usageOfCPU: 0
   initialBlockedMemory: 0
   _usedMemory: 0

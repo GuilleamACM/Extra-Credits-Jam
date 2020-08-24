@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda13c9fece96a846a970677a8c44343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryUsage: 128
+  memoryUsage: 120
   defaultMovementSpeed: 1.8
   HijackTime: 5
   HealFX: {fileID: 3831289178317799922}
