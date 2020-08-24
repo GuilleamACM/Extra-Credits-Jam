@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2539,12 +2539,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1534330800}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &947147117 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3546520341553150794, guid: 501998217fb385e45a71d9591c0af4ed,
-    type: 3}
-  m_PrefabInstance: {fileID: 1534330800}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &967044078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,7 +2572,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   pauseOverlay: {fileID: 872787736}
-  levelCompletedOverlay: {fileID: 947147117}
+  levelCompletedOverlay: {fileID: 1534330801}
   gameOverOverlay: {fileID: 661593307}
   gameOverTrack: 
   levelCompleteTrack: 
@@ -3109,6 +3103,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501998217fb385e45a71d9591c0af4ed, type: 3}
+--- !u!1 &1534330801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4835034417698521509, guid: 501998217fb385e45a71d9591c0af4ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 1534330800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1552286210 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3546520341853015460, guid: 501998217fb385e45a71d9591c0af4ed,
