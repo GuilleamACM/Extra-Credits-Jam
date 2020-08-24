@@ -32,6 +32,7 @@ namespace TinyGecko.Pathfinding2D
         [SerializeField] private Color _validPlace = new Color(1.0f, 1.0f, 1.0f, 0.7f);
         [SerializeField] private Color _invalidPlace = new Color(0.6f, 0.1f, 0.0f, 0.7f);
         [SerializeField] List<GridCelState> _validPlacementStates = new List<GridCelState>();
+        [SerializeField] List<GridCelState> _validMinePlacementStates = new List<GridCelState>();
         [SerializeField] private GameObject _placementFXPrefab;
         [SerializeField] private GameObject _destroyFXPrefab;
         private List<Structure> _placedStructures;
@@ -96,7 +97,7 @@ namespace TinyGecko.Pathfinding2D
                 {
                     Vector3 pos = origin + offset + new Vector3(WorldGrid.Instance.CelSize * x, -WorldGrid.Instance.CelSize*y);
                     GridCel cel = WorldGrid.Instance.LocalPosToGrid(WorldGrid.Instance.WorldToLocal(pos));
-                    if (cel != null && IsCelValidForPlacement(cel))
+                    if (cel != null && IsCelValidForPlacement(structure, cel))
                         occupyingCels.Add(cel);
                 }
             }
@@ -117,7 +118,7 @@ namespace TinyGecko.Pathfinding2D
             var cels = OverlappingGrids(structure);
             foreach(var cel in cels)
             {
-                if (!IsCelValidForPlacement(cel))
+                if (!IsCelValidForPlacement(structure, cel))
                     return Tuple.Create(false, cels);
             }
 
@@ -134,7 +135,8 @@ namespace TinyGecko.Pathfinding2D
             Vector3 center = Vector3.zero;
             foreach (var cel in cels)
             {
-                cel.celState = GridCelState.Occupied;
+                if(!structure.isMine)
+                    cel.celState = GridCelState.Occupied;
                 center += cel.worldPos;
             }
             center /= cels.Count;
@@ -194,8 +196,13 @@ namespace TinyGecko.Pathfinding2D
         {
             if (_placedStructures.Contains(structure))
             {
-                foreach(var cel in structure.OccupyingCels)
-                    cel.celState = GridCelState.Free;
+                foreach (var cel in structure.OccupyingCels) {
+                    if(structure.isMine)
+                        cel.celState = GridCelState.Walkable;
+                    else
+                        cel.celState = GridCelState.NotWalkable;
+                }
+
 
                 var go = Instantiate(_destroyFXPrefab);
                 go.transform.position = structure.transform.position;
@@ -218,9 +225,12 @@ namespace TinyGecko.Pathfinding2D
 
 
         #region Placement Utiliy Functions
-        public bool IsCelValidForPlacement(GridCel cel)
+        public bool IsCelValidForPlacement(Structure structure, GridCel cel)
         {
-            return _validPlacementStates.Contains(cel.celState);
+            if (!structure.isMine)
+                return _validPlacementStates.Contains(cel.celState);
+            else
+                return _validMinePlacementStates.Contains(cel.celState);
         }
         #endregion Placement Utility Functions
 

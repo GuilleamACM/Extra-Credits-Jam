@@ -15,6 +15,7 @@ namespace TinyGecko.Pathfinding2D
         public Vector3 WorldPos { get => transform.position; set => transform.position = value; }
         public List<GridCel> OccupyingCels { get; set; } // list of cels the structure is occupying
         public int memoryCost = 16;
+        public bool isMine = false;
         #endregion Properties
 
 

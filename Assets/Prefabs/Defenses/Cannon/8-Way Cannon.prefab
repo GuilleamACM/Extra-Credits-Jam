@@ -17,6 +17,11 @@ PrefabInstance:
       propertyPath: _entitySize.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2710646363341899359, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: memoryCost
+      value: 384
+      objectReference: {fileID: 0}
     - target: {fileID: 3735270157520374889, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: m_Name
@@ -125,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: TimeBetweenShots
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
@@ -188,6 +193,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1c95c2be2a313f04cb1b598e2e99a9ba, type: 2}
+    - target: {fileID: 3735270157520374895, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7450629658927308363, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: BulletPrefab

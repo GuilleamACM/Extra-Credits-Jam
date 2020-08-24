@@ -51,7 +51,7 @@ MonoBehaviour:
   cannons:
   - {fileID: 188797820658700107}
   BulletHolder: {fileID: 0}
-  TimeBetweenShots: 0.2
+  TimeBetweenShots: 0.25
 --- !u!114 &6209640110203695500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ddf44a099f2154c87415007cff3128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 80
 --- !u!212 &6209640110203695501
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: -8760288009359856575, guid: 548234134c46805459e1ed3a948f2f42,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -129,7 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitySize: {x: 1, y: 1}
-  memoryCost: 512
+  memoryCost: 356
+  isMine: 0
 --- !u!1001 &6209640110530684423
 PrefabInstance:
   m_ObjectHideFlags: 0

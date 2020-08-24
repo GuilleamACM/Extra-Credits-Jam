@@ -193,7 +193,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2337,6 +2337,7 @@ MonoBehaviour:
   _validPlace: {r: 1, g: 1, b: 1, a: 0.7}
   _invalidPlace: {r: 0.6, g: 0.1, b: 0, a: 0.7}
   _validPlacementStates: 0100000010000000
+  _validMinePlacementStates: 04000000
   _placementFXPrefab: {fileID: 32052447447341326, guid: 984e2514cd731d647b5d23830d1b5cc6,
     type: 3}
   _destroyFXPrefab: {fileID: 7753565046393570957, guid: d4d8c401a3a8be140acd38d4c6963a1b,
@@ -3636,9 +3637,12 @@ GameObject:
   - component: {fileID: 548314457}
   - component: {fileID: 548314459}
   - component: {fileID: 548314458}
+  - component: {fileID: 548314460}
+  - component: {fileID: 548314462}
+  - component: {fileID: 548314461}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4338,6 +4342,103 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &548314460
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548314456}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
+--- !u!66 &548314461
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548314456}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 548314460}
+    m_ColliderPaths:
+    - - X: 100000000
+        Y: -60000000
+      - X: 100000000
+        Y: 60000000
+      - X: -70000000
+        Y: 60000000
+      - X: -70000000
+        Y: 50000000
+      - X: 90000000
+        Y: 50000000
+      - X: 90000000
+        Y: -50000000
+      - X: -70000000
+        Y: -50000000
+      - X: -70000000
+        Y: -30000000
+      - X: -90000000
+        Y: -30000000
+      - X: -90000000
+        Y: 60000000
+      - X: -100000000
+        Y: 60000000
+      - X: -100000000
+        Y: -60000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 9.99997, y: -6}
+      - {x: 9.99997, y: 6}
+      - {x: -7, y: 5.999971}
+      - {x: -6.9999704, y: 5}
+      - {x: 9, y: 4.9999704}
+      - {x: 8.99997, y: -5}
+      - {x: -7, y: -4.9999704}
+      - {x: -7.0000296, y: -3}
+      - {x: -9, y: -2.9999707}
+      - {x: -9.00003, y: 6}
+      - {x: -10, y: 5.999971}
+      - {x: -9.99997, y: -6}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!50 &548314462
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548314456}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &557645360
 GameObject:
   m_ObjectHideFlags: 0
@@ -6214,7 +6315,7 @@ Canvas:
   m_RenderMode: 1
   m_Camera: {fileID: 1144952273}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -6287,7 +6388,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
+  m_BackGroundColor: {r: 0.061676744, g: 0.148882, b: 0.16981131, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -8403,7 +8504,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - {fileID: 11400000, guid: c98e2e8e6bb536042aa9ee635aae9650, type: 2}
+  - {fileID: 11400000, guid: 511950aafea0f61488de327b4e6f3404, type: 2}
+  - {fileID: 11400000, guid: 8ac431092b7054e42b308d65e66f4c90, type: 2}
+  - {fileID: 11400000, guid: 59aebb0c7543ad744b7580d8ca99d0fe, type: 2}
+  - {fileID: 11400000, guid: aaab2727ff503be43a82e8b45707b051, type: 2}
+  - {fileID: 11400000, guid: f5526015b22ac0045ac5d114ef6a49ec, type: 2}
+  - {fileID: 11400000, guid: 26073ab2250cd7843936861659f04462, type: 2}
+  - {fileID: 11400000, guid: e5919714cc011e441b3fb12301d78d64, type: 2}
+  - {fileID: 11400000, guid: ae5accb8afa522643ab99c8e24cee6e4, type: 2}
+  - {fileID: 11400000, guid: f6fabe38e63e66a4887581ed562e9805, type: 2}
   enemysAlive:
     m_PersistentCalls:
       m_Calls: []
@@ -8411,7 +8520,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   spawnPoint: {fileID: 1561247233}
-  timeBetweenWaves: 5
+  timeBetweenWaves: 3.5
 --- !u!4 &1561247233
 Transform:
   m_ObjectHideFlags: 0
@@ -10088,7 +10197,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

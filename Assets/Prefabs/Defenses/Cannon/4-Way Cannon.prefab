@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 6740741442962960701, guid: 548234134c46805459e1ed3a948f2f42,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -107,7 +107,7 @@ MonoBehaviour:
   - {fileID: 7450629659764577949}
   - {fileID: 7450629658927308363}
   BulletHolder: {fileID: 0}
-  TimeBetweenShots: 0.5
+  TimeBetweenShots: 2.8
 --- !u!114 &2710646363341899359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitySize: {x: 1, y: 1}
-  memoryCost: 512
+  memoryCost: 320
+  isMine: 0
 --- !u!1001 &3735270155904221137
 PrefabInstance:
   m_ObjectHideFlags: 0

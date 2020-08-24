@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 4326872430171513394, guid: a779de2890e3c44459dee3a12136bbe5,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -130,11 +130,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda13c9fece96a846a970677a8c44343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryUsage: 64
-  defaultMovementSpeed: 3
+  memoryUsage: 128
+  defaultMovementSpeed: 1.6
   HijackTime: 5
-  maxHealth: 20
+  maxHealth: 60
   health: 0
+  deathFXPrefab: {fileID: 7753565046393570957, guid: d4d8c401a3a8be140acd38d4c6963a1b,
+    type: 3}
   _type: 0
   HealRange: 5
   HealAmount: 20
@@ -156,7 +158,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 1.3333334, y: 1.3333334}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

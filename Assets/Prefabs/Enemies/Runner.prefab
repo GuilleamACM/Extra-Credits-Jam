@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -2330701393990720033, guid: 22b813a64835e4a47b097249a49a6c0a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -131,10 +131,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memoryUsage: 64
-  defaultMovementSpeed: 3
+  defaultMovementSpeed: 2.8
   HijackTime: 5
-  maxHealth: 10
+  maxHealth: 20
   health: 0
+  deathFXPrefab: {fileID: 7753565046393570957, guid: d4d8c401a3a8be140acd38d4c6963a1b,
+    type: 3}
   _type: 0
   HealRange: 5
   HealAmount: 20

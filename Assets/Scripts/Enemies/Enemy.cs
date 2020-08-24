@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,6 +12,8 @@ public class Enemy : MonoBehaviour
     public int maxHealth;
     [SerializeField]
     private int health;
+    [SerializeField]
+    private GameObject deathFXPrefab;
 
     private bool isDead;
     public EnemyType _type = EnemyType.Normal;
@@ -69,11 +69,23 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int amount)
     {
         health -= amount;
-
+        AnimateTakeDamage();
         if (health <= 0 && !isDead)
         {
             Die();
         }
+    }
+    public void AnimateTakeDamage()
+    {
+        Sequence seq = DOTween.Sequence();
+        var sprite = GetComponent<SpriteRenderer>();
+        seq.Append( transform.DOScale(new Vector3(1.2f, 0.8f, 1.0f), 0.1f) );
+        seq.Insert( 0.0f, sprite.DOColor(new Color(0.8f, 0.05f, 0.05f), 0.10f) );
+
+        seq.Append( transform.DOScale(new Vector3(0.9f, 1.1f, 1.0f), 0.1f) );
+        seq.Insert( 0.2f, sprite.DOColor(Color.white, 0.10f) );
+
+        seq.Append( transform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 0.1f) );
     }
 
     public void Heal(int amount)
@@ -116,6 +128,9 @@ public class Enemy : MonoBehaviour
         //Particle Effects
         //DestroyParticles
         WaveSpawner.Instance.RemoveEnemy(this);
+        var fx = Instantiate(deathFXPrefab);
+        fx.transform.position = transform.position;
+        AudioManager.Instance.PlayAudio("die_virus");
         Destroy(gameObject);
     }
 }
