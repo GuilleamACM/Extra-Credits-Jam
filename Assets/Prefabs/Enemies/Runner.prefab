@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 447723943629622887}
   - component: {fileID: 447723943629622886}
-  - component: {fileID: 7892308841451773564}
+  - component: {fileID: 2725842379911739193}
   - component: {fileID: 437475685654140793}
   - component: {fileID: 390284860155290400}
   - component: {fileID: 8536907819770371103}
   - component: {fileID: 5203396255958645848}
   m_Layer: 0
-  m_Name: Basic Virus
+  m_Name: Runner
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b87476a62f28c2b4a9d64a3f95483e73, type: 2}
+  - {fileID: 2100000, guid: 0bc0069564feae64487db7796efcc92d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7892308841451773564
+--- !u!95 &2725842379911739193
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 447723943629622885}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 698812b48a291be41b3a791b9361e2d6, type: 2}
+  m_Controller: {fileID: 9100000, guid: c97de9905d58b834187e08ac30c90f1d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

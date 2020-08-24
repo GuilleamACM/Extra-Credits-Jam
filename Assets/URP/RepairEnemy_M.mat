@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 4-Way_M
-  m_Shader: {fileID: -6465566751694194690, guid: 2bef03f349b8edb40bc3ca5205e46532,
+  m_Name: RepairEnemy_M
+  m_Shader: {fileID: -6465566751694194690, guid: b55abcf8593cff4428c50f864a3860b6,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -21,13 +21,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Emission:
-        m_Texture: {fileID: 2800000, guid: 08a61fbc310cba94e9e7a9f8cdc2ec11, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0bccbfe98d4ca654e80eb0954e18499b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 548234134c46805459e1ed3a948f2f42, type: 3}
+        m_Texture: {fileID: 2800000, guid: 22b813a64835e4a47b097249a49a6c0a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_F103E129: {r: 0.89073944, g: 0.89073944, b: 0.027981343, a: 1}
+    - Color_F103E129: {r: 0.17791377, g: 1.7885014, b: 0, a: 0}
