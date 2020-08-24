@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 671354462475355264}
   - component: {fileID: 8809748126913641407}
   - component: {fileID: 4903749308671613944}
+  - component: {fileID: 5912333420190128784}
   m_Layer: 0
   m_Name: Hijacker
   m_TagString: Enemy
@@ -188,3 +189,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5912333420190128784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724254757396965829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f9c8421c7b1ba4bbf7c27468bcb46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HijackerBullet: {fileID: 229421735149181909, guid: 6fe5aa17e8759394cbc5ca362e94ecbd,
+    type: 3}
+  timeBetweenShots: 1
+  fireDirections:
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 0, y: 1, z: 0}
+  directionIndex: 0
