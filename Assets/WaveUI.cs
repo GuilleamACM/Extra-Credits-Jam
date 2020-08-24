@@ -16,6 +16,6 @@ public class WaveUI : MonoBehaviour
     void Update()
     {
         if(spawner)
-            text.text = $"Current wave: {spawner.waveIndex+1}/{spawner.waves.Length}";
+            text.text = $"Wave: {spawner.waveIndex}/{spawner.waves.Length}";
     }
 }

@@ -73,19 +73,19 @@ namespace TinyGecko.Pathfinding2D
             }
         }
 
-        //private void OnValidate()
-        //{
-        //    _grid = new GridCel[_gridSize.x, _gridSize.y];
-        //
-        //    for (int y = 0; y < _gridSize.y; y++)
-        //    {
-        //        for (int x = 0; x < _gridSize.x; x++)
-        //        {
-        //            Vector3 celPos = GridOrigin + ToCenterOffset + new Vector3(_celSize * x, -_celSize * y);
-        //            _grid[x, y] = new GridCel(VerifyPosition(celPos), celPos, x, y);
-        //        }
-        //    }
-        //}
+        private void OnValidate()
+        {
+            _grid = new GridCel[_gridSize.x, _gridSize.y];
+
+            for (int y = 0; y < _gridSize.y; y++)
+            {
+                for (int x = 0; x < _gridSize.x; x++)
+                {
+                    Vector3 celPos = GridOrigin + ToCenterOffset + new Vector3(_celSize * x, -_celSize * y);
+                    _grid[x, y] = new GridCel(VerifyPosition(celPos), celPos, x, y);
+                }
+            }
+        }
 
         private void OnDrawGizmos()
         {
