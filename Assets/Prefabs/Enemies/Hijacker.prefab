@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 724254757396965831}
   - component: {fileID: 724254757396965830}
+  - component: {fileID: 5795533399365096130}
   - component: {fileID: 732268704665596121}
   - component: {fileID: 671354462475355264}
   - component: {fileID: 8809748126913641407}
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 724254757396965829}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.41, y: -4.55, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -53,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 05b5a1b427f866d42824b35b1c6e1a11, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,8 +75,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 2a38ea883f4d10a44b1ee20865493a9d, type: 3}
-  m_Color: {r: 0.4481132, g: 0.89871204, b: 1, a: 1}
+  m_Sprite: {fileID: -818035237066084342, guid: 3615bf805b19e6148aabbcac6c9b6592,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,6 +87,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5795533399365096130
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724254757396965829}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b82242f3aed915643952406afc48cfce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &732268704665596121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   memoryUsage: 64
   defaultMovementSpeed: 3
+  HijackTime: 5
   maxHealth: 10
   health: 0
   _type: 0
