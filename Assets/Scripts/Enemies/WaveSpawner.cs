@@ -74,7 +74,7 @@ public class WaveSpawner : MonoBehaviour
         if (countdown <= 0f)
         {
             StartCoroutine(SpawnWave(0));
-            if(waves2.Length > 0)
+            if(waves2 != null && waves2.Length > 0)
             {
                 StartCoroutine(SpawnWave(1));
             }

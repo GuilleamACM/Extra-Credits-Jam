@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         Instance = null;
+        Time.timeScale = 1f;
     }
     #endregion Singleton
 

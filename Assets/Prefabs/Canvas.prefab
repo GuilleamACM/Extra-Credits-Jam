@@ -1281,7 +1281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<align=\"center\">error :(</align=\"center\">\n\n<b>></b>Technical information:\n<b>></b>0x0000007D\tPLEASE_DOWNLOAD_MORE_MEMORY\n\n<align=\"center\">press
+  m_text: "<align=\"center\">error :(</align=\"center\">\n\n<b>></b>Technical information:\n<b>></b>0x0000007D\tPLEASE_DOWNLOAD_MORE_RAM\n\n<align=\"center\">press
     any key to reboot</align=\"center\">"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28c3f3be2b1b51a449a97de09e301490, type: 2}
@@ -5473,7 +5473,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592b94c722845b144ae7b56774da1699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 1
 --- !u!1 &3546520341583340809
 GameObject:
   m_ObjectHideFlags: 0
