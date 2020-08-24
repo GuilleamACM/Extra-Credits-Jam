@@ -26,7 +26,7 @@ public class WaveSpawner : MonoBehaviour
     public float timeBetweenWaves = 5f;
     private float countdown = 2f;
 
-    private int waveIndex;
+    public int waveIndex;
     private int waveIndex2;
     public List<Transform> GetEnemiesTransform() => enemiesTransform;
 
