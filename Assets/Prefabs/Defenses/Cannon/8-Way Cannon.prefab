@@ -213,6 +213,11 @@ PrefabInstance:
       propertyPath: cannons.Array.data[7]
       value: 
       objectReference: {fileID: 8991631126822870973}
+    - target: {fileID: 3735270157520374894, guid: 605e9408ddb31d843b72bb8d42681e76,
+        type: 3}
+      propertyPath: defaultMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 1c95c2be2a313f04cb1b598e2e99a9ba, type: 2}
     - target: {fileID: 3735270157520374895, guid: 605e9408ddb31d843b72bb8d42681e76,
         type: 3}
       propertyPath: m_Sprite

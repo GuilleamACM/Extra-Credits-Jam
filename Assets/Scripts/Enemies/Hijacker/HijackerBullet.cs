@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class HijackerBullet : MonoBehaviour
 {
-    public static readonly string towerTag = "Tower";
-    public static readonly string wallTag = "Wall";
+    public readonly string towerTag = "Tower";
+    public readonly string wallTag = "Wall";
 
-    //public GameObject hitFX;
+    public GameObject hitFX;
     public Vector3 direction;
     public float speed = 3f;
     public float hijackTime = 1f;
@@ -27,8 +27,8 @@ public class HijackerBullet : MonoBehaviour
     {
         if (collision.CompareTag(towerTag))
         {
-            //var fx = Instantiate(hitFX);
-            //fx.transform.position = transform.position;
+            var fx = Instantiate(hitFX);
+            fx.transform.position = transform.position;
             collision.GetComponent<Tower>().Stall(hijackTime);
             Destroy(this.gameObject);
         }

@@ -9,6 +9,9 @@ public abstract class Tower : MonoBehaviour
     public bool stalled = true;
     public CannonHead[] cannons;
     public Transform BulletHolder;
+    public SpriteRenderer sprite;
+    public Material clearMaterial;
+    public Material defaultMaterial;
 
     void OnEnemiesAlive() 
     {
@@ -24,6 +27,7 @@ public abstract class Tower : MonoBehaviour
     {
         if (!GameManager.Instance.started) { this.stalled = true; }
         GameManager.Instance.StartGameEvent.AddListener(OnEnemiesAlive);
+        this.sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -36,6 +40,8 @@ public abstract class Tower : MonoBehaviour
 
     public void Stall(float TimeInSeconds) 
     {
+        sprite.material = clearMaterial;
+        Debug.LogWarning("after line!");
         StartCoroutine(StallCoroutine(TimeInSeconds));
     }
 
@@ -43,6 +49,7 @@ public abstract class Tower : MonoBehaviour
     {
         this.stalled = true;
         yield return new WaitForSeconds(time);
+        sprite.material = defaultMaterial;
         this.stalled = false;
     }
 

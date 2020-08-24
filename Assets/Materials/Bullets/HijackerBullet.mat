@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 4-WayBullet_M
+  m_Name: HijackerBullet
   m_Shader: {fileID: -6465566751694194690, guid: 007292aa744b7f54d8b8b07e72a75632,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -30,4 +30,4 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_F103E129: {r: 0.92156863, g: 0.92156863, b: 0.03529412, a: 0}
+    - Color_F103E129: {r: 0, g: 0.6901961, b: 13.490196, a: 0}

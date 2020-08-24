@@ -109,6 +109,9 @@ MonoBehaviour:
   - {fileID: 7450629659764577949}
   - {fileID: 7450629658927308363}
   BulletHolder: {fileID: 0}
+  sprite: {fileID: 3735270157520374895}
+  clearMaterial: {fileID: 2100000, guid: 360f2f8dcd862084782136893c73c923, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: a370f505af78a9a46808596afecc9a20, type: 2}
   TimeBetweenShots: 2.8
 --- !u!114 &2710646363341899359
 MonoBehaviour:

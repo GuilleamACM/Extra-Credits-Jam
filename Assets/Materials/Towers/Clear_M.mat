@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Piercer_M
+  m_Name: Clear_M
   m_Shader: {fileID: -6465566751694194690, guid: 2bef03f349b8edb40bc3ca5205e46532,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -30,4 +30,4 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_F103E129: {r: 1.0537082, g: 0, b: 0.02206719, a: 1}
+    - Color_F103E129: {r: 0, g: 0, b: 0, a: 0}

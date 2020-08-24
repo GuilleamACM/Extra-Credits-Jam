@@ -52,6 +52,9 @@ MonoBehaviour:
   cannons:
   - {fileID: 2072316992393892206}
   BulletHolder: {fileID: 0}
+  sprite: {fileID: 5220222869520270077}
+  clearMaterial: {fileID: 2100000, guid: 360f2f8dcd862084782136893c73c923, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 2c3f9bb180e996a47b7afa8a775d38ff, type: 2}
   TimeAiming: 2
   target: {fileID: 0}
   turnSpeed: 20

@@ -53,6 +53,9 @@ MonoBehaviour:
   cannons:
   - {fileID: 188797820658700107}
   BulletHolder: {fileID: 0}
+  sprite: {fileID: 6209640110203695501}
+  clearMaterial: {fileID: 2100000, guid: 360f2f8dcd862084782136893c73c923, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: a90b3060df29c954bafa989f05a3cb09, type: 2}
   TimeBetweenShots: 0.25
 --- !u!114 &6209640110203695500
 MonoBehaviour:
