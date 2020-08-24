@@ -131,9 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memoryUsage: 128
-  defaultMovementSpeed: 1.6
+  defaultMovementSpeed: 1.8
   HijackTime: 5
-  maxHealth: 60
+  maxHealth: 90
   health: 0
   deathFXPrefab: {fileID: 7753565046393570957, guid: d4d8c401a3a8be140acd38d4c6963a1b,
     type: 3}
