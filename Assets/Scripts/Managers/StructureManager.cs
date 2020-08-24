@@ -146,6 +146,7 @@ namespace TinyGecko.Pathfinding2D
 
             Transform structureTransform = StructureToPlace.transform;
             structure.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            AudioManager.Instance.PlayAudio("drop_tower");
             StructureToPlace = null;
             var go = Instantiate(_placementFXPrefab);
             go.transform.position = structureTransform.position;
