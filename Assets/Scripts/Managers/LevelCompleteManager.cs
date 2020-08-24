@@ -4,21 +4,17 @@ using UnityEngine;
 
 public class LevelCompleteManager : MonoBehaviour
 {
-    public float waitTime = 2f;
-    float currentTime = 0f;
-    void Update()
+    public void OnNextLevel()
     {
-        currentTime += Time.deltaTime;
-        if (Input.anyKeyDown && currentTime >= waitTime)
-        {
-            if (LevelHolder.Instance.SetCurrentLevelAsNextLevel())
-            {
-                LevelHolder.Instance.LoadCurrentLevel();
-            }
-            else 
-            {
-                Debug.Log("That's all folks!");
-            }
-        }
+        LevelHolder.Instance.SetCurrentLevelAsNextLevel();
+        LevelHolder.Instance.LoadCurrentLevel();
+    }
+    public void OnPlayAgain()
+    {
+        LevelHolder.Instance.LoadCurrentLevel();
+    }
+    public void OnMainMenu()
+    {
+        GameManager.Instance.BackToMainMenu();
     }
 }
