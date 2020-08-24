@@ -16,13 +16,10 @@ namespace TinyGecko.Pathfinding2D
         #region MonoBehaviour Methods
         private void Update()
         {
-            if (_tempRef && _tempRef.PlacedStructures.Count > 0)
-            {
-                grid = WorldGrid.Instance.Pathfinder.FindPath(transform.position, _tempRef.PlacedStructures[0]);
-            }
+            grid = WorldGrid.Instance.Pathfinder.FindPath(transform.position, _tempRef);
         }
 
-        [SerializeField] StructureManager _tempRef;
+        [SerializeField] Structure _tempRef;
 
         private void OnDrawGizmos()
         {

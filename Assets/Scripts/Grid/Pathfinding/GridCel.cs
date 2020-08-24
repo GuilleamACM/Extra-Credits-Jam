@@ -10,6 +10,7 @@ namespace TinyGecko.Pathfinding2D
         Occupied = 1 << 1, // Something occupies the grid cel.
         Walkable = 1 << 2, // Not free, but pathfinding units can walk over it
         WalkablePlaced = 1 << 3, // Walkable, but there's something in the cel. Can't place anything here
+        NotWalkable = 1 << 4 // Can place structures or things like that, but pathfinding wont consider
     }
 
     public class GridCel : IHeapItem<GridCel>

@@ -56,7 +56,7 @@ namespace TinyGecko.Pathfinding2D
 
                 foreach (GridCel neighbour in _grid.GetNeighbours(currentCel))
                 {
-                    if (neighbour.celState == GridCelState.Occupied || closedSet.Contains(neighbour))
+                    if ( neighbour.celState == GridCelState.NotWalkable || neighbour.celState == GridCelState.Occupied || closedSet.Contains(neighbour))
                         continue;
 
                     int newCostToNeighbour = currentCel.gCost + GetDistance(currentCel, neighbour);
@@ -85,13 +85,26 @@ namespace TinyGecko.Pathfinding2D
         /// <returns>Queue containing the nodes an entity shall traverse</returns>
         public Queue<GridCel> FindPath(Vector3 startPos, IGridEntity entity)
         {
-            float halfSizeX = entity.EntitySize.x * _grid.CelSize / 2.0f + 0.5f; // +0.5f offset is to guarantee it'll end outside the entity
-            float halfSizeY = entity.EntitySize.y * _grid.CelSize / 2.0f + 0.5f; // +0.5f offset is to guarantee it'll end outside the entity
+            var cels = entity.OccupyingCels;
+            List<GridCel> neighbours = new List<GridCel>();
 
-            float posX = Mathf.Clamp(startPos.x, entity.WorldPos.x - halfSizeX, entity.WorldPos.x + halfSizeX);
-            float posY = Mathf.Clamp(startPos.y, entity.WorldPos.y - halfSizeY, entity.WorldPos.y + halfSizeY);
+            foreach (GridCel cel in cels)
+                neighbours.AddRange(_grid.GetNeighbours(cel));
 
-            Vector3 targetPos = new Vector3(posX, posY, 0);
+            float distance = Mathf.Infinity;
+            Vector3 targetPos = Vector3.zero;
+
+            foreach(var neighbour in neighbours)
+            {
+                if (neighbour.celState != GridCelState.Walkable)
+                    continue;
+
+                if (Vector3.Distance(neighbour.worldPos, startPos) < distance)
+                {
+                    distance = Vector3.Distance(neighbour.worldPos, startPos);
+                    targetPos = neighbour.worldPos;
+                }
+            }
             return FindPath(startPos, targetPos);
         }
 

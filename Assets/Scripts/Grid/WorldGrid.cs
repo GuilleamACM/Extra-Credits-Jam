@@ -96,12 +96,18 @@ namespace TinyGecko.Pathfinding2D
             {
                 case GridCelState.Free:
                     return new Color(1.0f, 1.0f, 1.0f, 0.4f);
+
                 case GridCelState.Occupied:
                     return new Color(1.0f, 0.1f, 0.1f, 0.4f);
+
                 case GridCelState.Walkable:
-                    return new Color(0.8f, 0.8f, 0.1f, 0.4f);
+                    return new Color(0.0f, 1.0f, 0.1f, 0.4f);
+
                 case GridCelState.WalkablePlaced:
                     return new Color(0.4f, 0.4f, 0.05f, 0.4f);
+
+                case GridCelState.NotWalkable:
+                    return new Color(1.0f, 0.0f, 0.0f, 0.4f);
 
                 default:
                     return new Color(1.0f, 1.0f, 1.0f, 0.4f);
@@ -120,7 +126,19 @@ namespace TinyGecko.Pathfinding2D
         /// <returns>The corresponding cel state based on world setup</returns>
         private GridCelState VerifyPosition(Vector3 celPos)
         {
-            return GridCelState.Free;
+            var col = Physics2D.OverlapBox(celPos, new Vector2(CelSize*0.9f, CelSize*0.9f), 0, LayerMask.GetMask("Path"));
+            if (col != null)
+                return GridCelState.Walkable;
+
+            col = Physics2D.OverlapBox(celPos, new Vector2(CelSize*0.9f, CelSize*0.9f), 0, LayerMask.GetMask("Placement"));
+            if (col != null)
+                return GridCelState.NotWalkable;
+
+            col = Physics2D.OverlapBox(celPos, new Vector2(CelSize * 0.9f, CelSize * 0.9f), 0, LayerMask.GetMask("Structure"));
+            if (col != null)
+                return GridCelState.NotWalkable;
+
+            return GridCelState.NotWalkable;
         }
 
         /// <summary>
