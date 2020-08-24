@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1281890600674870062, guid: 548234134c46805459e1ed3a948f2f42,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccdcfdeb2aad83d408e2d9e3f252d079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stalled: 1
+  cannons: []
+  BulletHolder: {fileID: 0}
   slow: 0.5
   slowDuration: 2
   cooldownTime: 4
@@ -130,4 +133,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitySize: {x: 1, y: 1}
-  memoryCost: 256
+  memoryCost: 128
+  isMine: 1

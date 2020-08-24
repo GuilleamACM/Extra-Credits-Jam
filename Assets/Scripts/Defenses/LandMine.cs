@@ -10,8 +10,10 @@ public class LandMine : Tower
     public float slowDuration = 2f;
     public float cooldownTime = 4f;
     public float range;
+    public int maxTargetsBeforeCooldown = 3;
     private List<Transform> enemies;
     bool onCooldown = false;
+    private int affected = 0;
 
     private void OnDrawGizmosSelected()
     {
@@ -26,7 +28,7 @@ public class LandMine : Tower
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!stalled)
+        if(!stalled && !onCooldown)
             HitCheck(collision);
     }
 
@@ -39,10 +41,12 @@ public class LandMine : Tower
                 Debug.Log(Vector3.Distance(this.transform.position, t.position));
                 if (Vector3.Distance(this.transform.position,t.position) <= range) 
                 {
+                    affected++;
                     t.GetComponent<Enemy>().Slow(slow,slowDuration);
                 }
             }
-            StartCoroutine(Cooldown());
+            if(affected == maxTargetsBeforeCooldown)
+                StartCoroutine(Cooldown());
         }
     }
 
@@ -50,6 +54,7 @@ public class LandMine : Tower
     {
         this.onCooldown = true;
         yield return new WaitForSeconds(cooldownTime);
+        affected = 0;
         this.onCooldown = false;
     }
 }

@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public float LifeTime = 10f;
     float currentLifeTime = 0f;
     public BulletType type;
-
+    [SerializeField] GameObject hitFX;
     public enum BulletType 
     {
         Normal,
@@ -52,8 +52,11 @@ public class Bullet : MonoBehaviour
 
     void HitCheck(Collider2D collision) 
     {
+        Debug.Log(collision.gameObject);
         if (collision.CompareTag(EnemyTag))
         {
+            var fx = Instantiate(hitFX);
+            fx.transform.position = transform.position;
             collision.GetComponent<Enemy>().TakeDamage(this.Damage);
             if(this.type == BulletType.Normal)
                 Destroy(this.gameObject);

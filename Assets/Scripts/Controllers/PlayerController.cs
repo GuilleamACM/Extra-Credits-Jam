@@ -58,8 +58,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            StructureManager.Instance.PlaceCurrentStructure(_playerStatus);
-
+            bool result = StructureManager.Instance.PlaceCurrentStructure(_playerStatus);
+            if (result) {
+                hotbar.ResetAllSlots();
+            }
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -69,7 +71,10 @@ public class PlayerController : MonoBehaviour
                     StructureManager.Instance.RemoveStructure(_structureAtMouse, _playerStatus);
             }
             else
+            {
                 StructureManager.Instance.CancelPlacement();
+                hotbar.ResetAllSlots();
+            }
         }
     }
     #endregion MonoBehaviour Methods
