@@ -654,7 +654,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'RAM COST: 512'
+  m_text: 'RAM COST: 320'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28c3f3be2b1b51a449a97de09e301490, type: 2}
   m_sharedMaterial: {fileID: 5279009800581888733, guid: 28c3f3be2b1b51a449a97de09e301490,
@@ -810,7 +810,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'RAM COST: 512'
+  m_text: 'RAM COST: 384'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28c3f3be2b1b51a449a97de09e301490, type: 2}
   m_sharedMaterial: {fileID: 5279009800581888733, guid: 28c3f3be2b1b51a449a97de09e301490,
@@ -3025,7 +3025,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'RAM COST: 512'
+  m_text: 'RAM COST: 448'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28c3f3be2b1b51a449a97de09e301490, type: 2}
   m_sharedMaterial: {fileID: 5279009800581888733, guid: 28c3f3be2b1b51a449a97de09e301490,
@@ -3775,7 +3775,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'RAM COST: 512'
+  m_text: 'RAM COST: 128'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28c3f3be2b1b51a449a97de09e301490, type: 2}
   m_sharedMaterial: {fileID: 5279009800581888733, guid: 28c3f3be2b1b51a449a97de09e301490,
@@ -6152,7 +6152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'RAM COST: 512'
+  m_text: 'RAM COST: 448'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 28c3f3be2b1b51a449a97de09e301490, type: 2}
   m_sharedMaterial: {fileID: 5279009800581888733, guid: 28c3f3be2b1b51a449a97de09e301490,

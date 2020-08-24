@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entitySize: {x: 1, y: 1}
-  memoryCost: 356
+  memoryCost: 448
   isMine: 0
 --- !u!50 &4745507820070474270
 Rigidbody2D:
