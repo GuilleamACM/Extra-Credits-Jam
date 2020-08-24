@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour
     }
 
     public static string EnemyTag = "Enemy";
+    public static string WallTag = "Wall";
 
     private void Start()
     {
@@ -56,6 +57,10 @@ public class Bullet : MonoBehaviour
             collision.GetComponent<Enemy>().TakeDamage(this.Damage);
             if(this.type == BulletType.Normal)
                 Destroy(this.gameObject);
+        }
+        if (collision.CompareTag(WallTag)) 
+        {
+            Destroy(this.gameObject);
         }
     }
 }

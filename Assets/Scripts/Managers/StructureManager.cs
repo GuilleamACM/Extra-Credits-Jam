@@ -169,7 +169,10 @@ namespace TinyGecko.Pathfinding2D
                 return false;
 
             status.UsedMemory += StructureToPlace.memoryCost;
-            StructureToPlace.GetComponent<Tower>().stalled = false;
+            if (GameManager.Instance.started) 
+            {
+                StructureToPlace.GetComponent<Tower>().stalled = false;
+            }
             PlaceStructure(StructureToPlace, canPlace.Item2);
             return true;
         }

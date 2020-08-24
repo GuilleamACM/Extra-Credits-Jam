@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public bool started { get;private set; }
+    public UnityEvent StartGameEvent;
     #region Singleton
     public static GameManager Instance;
     void Awake()
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        started = true;
+        StartGameEvent.Invoke();
         WaveSpawner.Instance.enabled = true;
     }
 

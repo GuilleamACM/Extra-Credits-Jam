@@ -10,7 +10,21 @@ public abstract class Tower : MonoBehaviour
     public CannonHead[] cannons;
     public Transform BulletHolder;
 
+    void OnEnemiesAlive() 
+    {
+        this.stalled = false;
+    }
 
+    void OnNoEnemysAlive() 
+    {
+        this.stalled = true;
+    }
+
+    private void Awake()
+    {
+        if (!GameManager.Instance.started) { this.stalled = true; }
+        GameManager.Instance.StartGameEvent.AddListener(OnEnemiesAlive);
+    }
 
     private void Start()
     {
