@@ -4808,7 +4808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690085837}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.57, y: 5.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5243,6 +5243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac924f26d1894224d8b0b97e8ba4b1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartGameEvent:
+    m_PersistentCalls:
+      m_Calls: []
   pauseOverlay: {fileID: 178129991}
   levelCompletedOverlay: {fileID: 1785045970}
   gameOverOverlay: {fileID: 1687937264}
@@ -6218,7 +6221,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 114
   m_TargetDisplay: 0
 --- !u!224 &1134426617
 RectTransform:
@@ -8401,6 +8404,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - {fileID: 11400000, guid: c98e2e8e6bb536042aa9ee635aae9650, type: 2}
+  enemysAlive:
+    m_PersistentCalls:
+      m_Calls: []
+  NoEnemysAlive:
+    m_PersistentCalls:
+      m_Calls: []
   spawnPoint: {fileID: 1561247233}
   timeBetweenWaves: 5
 --- !u!4 &1561247233
@@ -8411,7 +8420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561247231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.85, y: 5.45, z: 0}
+  m_LocalPosition: {x: -7.74, y: 4.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
