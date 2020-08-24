@@ -30,13 +30,9 @@ public class EnemyWaypointMovement : MonoBehaviour
         target = path.Dequeue().worldPos;
     }
 
+    Vector3 oldDir;
     private void Update()
     {
-        if (rigidBody.velocity.x >= 0)
-            spriteRenderer.flipX = false;
-        else
-            spriteRenderer.flipX = true;
-
         Vector3 waypointDirection = (target - transform.position).normalized * enemy.MovementSpeed * Time.deltaTime;
         float distance = Vector3.Distance(transform.position, target);
         if (distance <= Vector3.Distance(transform.position + waypointDirection,target)) 
@@ -47,7 +43,17 @@ public class EnemyWaypointMovement : MonoBehaviour
         {
             transform.Translate(waypointDirection, Space.World);
         }
+
+        Vector3 dir = (target-transform.position).normalized;
+        if ( dir.x != oldDir.x )
+        {
+            if(dir.x >= -0.01f)
+                spriteRenderer.flipX = false;
+            else
+                spriteRenderer.flipX = true;
+        }
     }
+
 
     private void GetNextWaypoint()
     {

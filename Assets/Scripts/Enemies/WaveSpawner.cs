@@ -10,6 +10,9 @@ public class WaveSpawner : MonoBehaviour
     public static int enemiesAlive = 0;
 
     public Wave[] waves;
+    public Wave[] waves2;
+
+
     private List<Enemy> enemies;
     private List<Transform> enemiesTransform;
 
@@ -18,11 +21,13 @@ public class WaveSpawner : MonoBehaviour
     public UnityEvent NoEnemysAlive;
 
     public Transform spawnPoint;
+    public Transform spawnPoint2;
 
     public float timeBetweenWaves = 5f;
     private float countdown = 2f;
 
     private int waveIndex;
+    private int waveIndex2;
     public List<Transform> GetEnemiesTransform() => enemiesTransform;
 
     private void Awake()
@@ -68,7 +73,11 @@ public class WaveSpawner : MonoBehaviour
 
         if (countdown <= 0f)
         {
-            StartCoroutine(SpawnWave());
+            StartCoroutine(SpawnWave(0));
+            if(waves2.Length > 0)
+            {
+                StartCoroutine(SpawnWave(1));
+            }
             countdown = timeBetweenWaves;
             return;
         }
@@ -76,22 +85,37 @@ public class WaveSpawner : MonoBehaviour
         countdown -= Time.deltaTime;
     }
 
-    IEnumerator SpawnWave()
+    IEnumerator SpawnWave(int waveIdx)
     {
-        Wave wave = waves[waveIndex];
-
-        for (int i = 0; i < wave.enemies.Length; i++)
+        if(waveIdx == 0)
         {
-            SpawnEnemy(wave.enemies[i]);
-            yield return new WaitForSeconds(1f / wave.spawnRate);
-        }
+            Wave wave = waves[waveIndex];
 
-        waveIndex++;
+            for (int i = 0; i < wave.enemies.Length; i++)
+            {
+                SpawnEnemy(wave.enemies[i], spawnPoint);
+                yield return new WaitForSeconds(1f / wave.spawnRate);
+            }
+
+            waveIndex++;
+        }
+        if (waveIdx == 1)
+        {
+            Wave wave = waves2[waveIndex2];
+
+            for (int i = 0; i < wave.enemies.Length; i++)
+            {
+                SpawnEnemy(wave.enemies[i], spawnPoint2);
+                yield return new WaitForSeconds(1f / wave.spawnRate);
+            }
+
+            waveIndex2++;
+        }
     }
 
-    private void SpawnEnemy(Enemy enemy)
+    private void SpawnEnemy(Enemy enemy, Transform point)
     {
-        GameObject spawnedEnemy = Instantiate(enemy.gameObject, spawnPoint.position, spawnPoint.rotation);
+        GameObject spawnedEnemy = Instantiate(enemy.gameObject, point.position, point.rotation);
         enemies.Add(spawnedEnemy.GetComponent<Enemy>());
         enemiesTransform.Add(spawnedEnemy.transform);
         enemiesAlive = enemies.Count;
