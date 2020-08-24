@@ -9,6 +9,7 @@ public class EnemyWaypointMovement : MonoBehaviour
     private Transform targetTower;
     private Vector3 target;
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rigidBody;
     private int currentWaypointIndex = 0;
     bool noTower = false;
 
@@ -17,6 +18,7 @@ public class EnemyWaypointMovement : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -29,6 +31,11 @@ public class EnemyWaypointMovement : MonoBehaviour
 
     private void Update()
     {
+        if (rigidBody.velocity.x >= 0)
+            spriteRenderer.flipX = false;
+        else
+            spriteRenderer.flipX = true;
+
         Vector3 waypointDirection = (target - transform.position).normalized * enemy.MovementSpeed * Time.deltaTime;
         float distance = Vector3.Distance(transform.position, target);
         if (distance <= Vector3.Distance(transform.position + waypointDirection,target)) 
