@@ -3041,6 +3041,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4129935421087438814, guid: 501998217fb385e45a71d9591c0af4ed,
+        type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1561247232}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501998217fb385e45a71d9591c0af4ed, type: 3}
 --- !u!1 &1534330801 stripped
@@ -3110,6 +3115,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1561247233}
   spawnPoint2: {fileID: 0}
   timeBetweenWaves: 3.5
+  waveIndex: 0
 --- !u!4 &1561247233
 Transform:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class WaveUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = $"Current wave: {spawner.waveIndex+1}/{spawner.waves.Length}";
+        if(spawner)
+            text.text = $"Current wave: {spawner.waveIndex+1}/{spawner.waves.Length}";
     }
 }
