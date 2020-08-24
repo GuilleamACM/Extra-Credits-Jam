@@ -100,10 +100,12 @@ MonoBehaviour:
   stalled: 1
   cannons: []
   BulletHolder: {fileID: 0}
+  clearMaterial: {fileID: 2100000, guid: 360f2f8dcd862084782136893c73c923, type: 2}
   slow: 0.5
   slowDuration: 2
   cooldownTime: 4
   range: 1
+  maxTargetsBeforeCooldown: 3
 --- !u!58 &6781241842613299846
 CircleCollider2D:
   m_ObjectHideFlags: 0

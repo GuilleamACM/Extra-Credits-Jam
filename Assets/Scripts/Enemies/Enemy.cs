@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float defaultMovementSpeed = 4f;
     public float HijackTime = 5f;
     public float MovementSpeed { get; private set; }
+    public ParticleSystem HealFX;
 
     public int maxHealth;
     [SerializeField]
@@ -90,6 +91,7 @@ public class Enemy : MonoBehaviour
 
     public void Heal(int amount)
     {
+        HealFX.Play();
         if(health + amount > maxHealth)
         {
             health = maxHealth;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using TinyGecko.Pathfinding2D;
+using DG.Tweening;
 
 [RequireComponent(typeof(Enemy))]
 public class EnemyWaypointMovement : MonoBehaviour
@@ -29,13 +30,9 @@ public class EnemyWaypointMovement : MonoBehaviour
         target = path.Dequeue().worldPos;
     }
 
+    Vector3 oldDir;
     private void Update()
     {
-        if (rigidBody.velocity.x >= 0)
-            spriteRenderer.flipX = false;
-        else
-            spriteRenderer.flipX = true;
-
         Vector3 waypointDirection = (target - transform.position).normalized * enemy.MovementSpeed * Time.deltaTime;
         float distance = Vector3.Distance(transform.position, target);
         if (distance <= Vector3.Distance(transform.position + waypointDirection,target)) 
@@ -46,7 +43,17 @@ public class EnemyWaypointMovement : MonoBehaviour
         {
             transform.Translate(waypointDirection, Space.World);
         }
+
+        Vector3 dir = (target-transform.position).normalized;
+        if ( dir.x != oldDir.x )
+        {
+            if(dir.x >= -0.01f)
+                spriteRenderer.flipX = false;
+            else
+                spriteRenderer.flipX = true;
+        }
     }
+
 
     private void GetNextWaypoint()
     {
@@ -64,6 +71,17 @@ public class EnemyWaypointMovement : MonoBehaviour
         //Decrease the Player RAM or CPU
         PlayerStatus.Instance.BlockedMemory += enemy.memoryUsage;
         WaveSpawner.Instance.RemoveEnemy(enemy);
+        Sequence seq = DOTween.Sequence();
+
+        GameObject structure = Waypoints.CoreSructure.gameObject;
+        var sprite = structure.GetComponent<SpriteRenderer>();
+        seq.Append(structure.transform.DOScale(new Vector3(1.2f, 0.8f, 1.0f), 0.1f));
+        seq.Insert(0.0f, sprite.DOColor(new Color(0.8f, 0.05f, 0.05f), 0.10f));
+
+        seq.Append(structure.transform.DOScale(new Vector3(0.9f, 1.1f, 1.0f), 0.1f));
+        seq.Insert(0.2f, sprite.DOColor(Color.white, 0.10f));
+
+        seq.Append(structure.transform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 0.1f));
         Destroy(gameObject);
     }
 }

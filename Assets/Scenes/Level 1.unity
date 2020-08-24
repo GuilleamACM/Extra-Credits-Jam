@@ -3167,7 +3167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _totalMemory: 4096
   usageOfCPU: 0
-  initialBlockedMemory: 1024
+  initialBlockedMemory: 1220
   _usedMemory: 0
   _blockedMemory: 0
 --- !u!4 &1603334924

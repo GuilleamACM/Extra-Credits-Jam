@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Lv1 - Wave7
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 2603230616359158738, guid: bee1a37e944ef824b864d7708149761f, type: 3}
+  - {fileID: 3273170517487067451, guid: 264fe0fdbaae7504d9e5e59d64d63a93, type: 3}
   - {fileID: 390284860155290400, guid: d47df28c469d4e94dbc76b0c52ceb12a, type: 3}
   - {fileID: 3273170517487067451, guid: 264fe0fdbaae7504d9e5e59d64d63a93, type: 3}
-  - {fileID: 3273170517487067451, guid: 264fe0fdbaae7504d9e5e59d64d63a93, type: 3}
+  - {fileID: 2603230616359158738, guid: bee1a37e944ef824b864d7708149761f, type: 3}
   - {fileID: 390284860155290400, guid: 67084a53cd5ed8c4f9876f59ecc1e8c4, type: 3}
   - {fileID: 390284860155290400, guid: d47df28c469d4e94dbc76b0c52ceb12a, type: 3}
   - {fileID: 390284860155290400, guid: 67084a53cd5ed8c4f9876f59ecc1e8c4, type: 3}
